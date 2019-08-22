@@ -4,33 +4,30 @@ import com.yeay.design.iterator.exam.Book;
 import com.yeay.design.iterator.exam.inter.Aggregate;
 import com.yeay.design.iterator.exam.inter.Iterator;
 
-/**
- * 具体集合
- */
-public class BookShelf implements Aggregate{
-    private Book[] books;
+import java.util.ArrayList;
+import java.util.List;
 
-    private int last = 0;
+public class BookListShelf implements Aggregate {
+    private List<Book> books;
 
-    public BookShelf(int maxSize){
-        this.books = new Book[maxSize];
+    public BookListShelf(int maxSize){
+        this.books = new ArrayList<>(maxSize);
     }
 
     public Book getBookAt(int index){
-        return books[index];
+        return books.get(index);
     }
 
     public void appendBook(Book book){
-        this.books[last] = book;
-        last ++;
+        this.books.add(book);
     }
 
     public int getLength(){
-        return last;
+        return books.size();
     }
 
     @Override
     public Iterator iterator() {
-        return new BookShelfIterator(this);
+        return new BookListShelfIterator(this);
     }
 }
