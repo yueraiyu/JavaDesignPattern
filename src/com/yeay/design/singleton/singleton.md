@@ -1,3 +1,6 @@
+## UML图
+>   * [Singleton](/singleton.jpg)
+
 ## 单例模式
 * 懒汉模式 单线程版
 * 懒汉模式 多线程版
