@@ -4,6 +4,6 @@
 -------------------------------------------------------------------------------
 
 ## UML图
->   * [Builder](./builder.jpg)  
+>   * [Builder](https://github.com/yueraiyu/JavaDesignPattern/blob/master/src/com/yeay/design/builder/builder.jpg)  
             
             

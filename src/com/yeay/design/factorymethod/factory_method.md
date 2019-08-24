@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------------
 
 ## UML图
->   * [FactoryMethod](./factory_method.jpg)
+>   ![FactoryMethod](https://github.com/yueraiyu/JavaDesignPattern/blob/master/src/com/yeay/design/factorymethod/factory_method.jpg)
 
 ## 工厂方法模型角色
 

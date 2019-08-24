@@ -5,8 +5,8 @@
 -----------------------------------------------------------------------------
 
 ## UML图
->   * [Adapter By Class](./adapter_by_class.jpg)
->   * [Adapter By Entrust](./adapter_by_entrust.jpg)
+>   * [Adapter By Class](https://github.com/yueraiyu/JavaDesignPattern/blob/master/src/com/yeay/design/adapter/adapter_by_class.jpg)
+>   * [Adapter By Entrust](https://github.com/yueraiyu/JavaDesignPattern/blob/master/src/com/yeay/design/adapter/adapter_by_entrust.jpg)
 
 ## 适配器分类
 

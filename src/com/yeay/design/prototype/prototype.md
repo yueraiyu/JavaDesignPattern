@@ -10,7 +10,7 @@
     在Java中通过clone()方法生成实例副本。
 ----------------------------------------------------------------------------------
 ## UML图
->  * [Prototype](./prototype.jpg)
+>  ![Prototype](https://github.com/yueraiyu/JavaDesignPattern/blob/master/src/com/yeay/design/prototype/prototype.jpg)
 
 ## 原型模式中的角色
 

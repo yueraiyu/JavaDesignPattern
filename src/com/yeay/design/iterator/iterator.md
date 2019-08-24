@@ -12,7 +12,7 @@
 ---------------------------------------------------------------------------------------------------------------------
 
 ## UML图
->   * [Iterator](./iterator.jpg)
+>   ![Iterator](https://github.com/yueraiyu/JavaDesignPattern/blob/master/src/com/yeay/design/iterator/iterator.jpg)
 
 ## 《图解设计模式》 例解
 > 2. 说明

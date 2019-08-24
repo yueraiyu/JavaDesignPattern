@@ -1,5 +1,5 @@
 ## UML图
->   * [Singleton](./singleton.jpg)
+>   ![Singleton](https://github.com/yueraiyu/JavaDesignPattern/blob/master/src/com/yeay/design/singleton/singleton.jpg)
 
 ## 单例模式
 * 懒汉模式 单线程版
