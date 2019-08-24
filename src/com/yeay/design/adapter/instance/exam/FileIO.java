@@ -1,4 +1,4 @@
-package com.yeay.design.adapter.exam;
+package com.yeay.design.adapter.instance.exam;
 
 import java.io.IOException;
 

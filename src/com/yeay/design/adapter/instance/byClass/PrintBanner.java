@@ -1,4 +1,4 @@
-package com.yeay.design.adapter.byClass;
+package com.yeay.design.adapter.instance.byClass;
 
 /**
  * 适配器

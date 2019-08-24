@@ -1,4 +1,4 @@
-package com.yeay.design.adapter.byEntrust;
+package com.yeay.design.adapter.instance.byEntrust;
 
 public abstract class Print {
     abstract void printWeak();

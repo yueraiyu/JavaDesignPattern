@@ -1,4 +1,4 @@
-package com.yeay.design.singleton;
+package com.yeay.design.singleton.instance;
 
 /**
  * 单例模式

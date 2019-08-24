@@ -1,4 +1,4 @@
-package com.yeay.design.adapter.byClass;
+package com.yeay.design.adapter.instance.byEntrust;
 
 /**
  * 实际情况

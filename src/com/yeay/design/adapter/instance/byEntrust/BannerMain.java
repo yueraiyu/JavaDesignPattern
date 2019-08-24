@@ -1,4 +1,4 @@
-package com.yeay.design.adapter.byEntrust;
+package com.yeay.design.adapter.instance.byEntrust;
 
 
 public class BannerMain {
