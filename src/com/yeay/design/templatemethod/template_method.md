@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 ## UML图
->   * [TemplateMethod](/template_method.jpg)
+>   * [TemplateMethod](./template_method.jpg)
 
 ## 模版方法角色
 

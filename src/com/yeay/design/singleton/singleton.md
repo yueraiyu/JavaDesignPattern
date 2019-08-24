@@ -1,5 +1,5 @@
 ## UML图
->   * [Singleton](/singleton.jpg)
+>   * [Singleton](./singleton.jpg)
 
 ## 单例模式
 * 懒汉模式 单线程版
