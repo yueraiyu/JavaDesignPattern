@@ -136,19 +136,20 @@
 
   ```markdown
   定义一个操作中的算法的骨架（`稳定`），而将一些步骤延迟（`变化`）到子类中；Template Method使得子类可以不改变（`复用`）一个算法的结构即可重定义（override重写）该算法的某些特定步骤；模版方法稳定中包含变化；适用于流程固定，但部分细节可能不同。
-  ```
-
-  * UML
-
-  * 动机
-
+  																																	---<<设计模式>> GOF
+```
+  
+* UML
+  
+* 动机
+  
     * 在软件构件过程中，对于某一项任务，它常常有`稳定`的整体操作结构，但各个子步骤却有很多`改变`的需求，或者由于固有原因（比如框架与应用之间的关系）而无法和任务的整体结构同时实现
-    * 如何在确定`稳定操作`结构的前提下，来灵活应对各个子步骤的`变化`或者`晚期实现`需求？
-
-  * 代码实现
-
-    * `传统操作`
-
+  * 如何在确定`稳定操作`结构的前提下，来灵活应对各个子步骤的`变化`或者`晚期实现`需求？
+  
+* 代码实现
+  
+  * `传统操作`
+  
     ```java
     public class ClassA{
       	public void oper1(){
@@ -213,12 +214,12 @@
         	classC.oper();
       }
     }
-    ```
-
-    
-
-    * `抽象类实现`
-
+  ```
+  
+  
+  
+  * `抽象类实现`
+  
     ```java
     //抽象类 主要定义抽象方法及模版方法
     public abstract class AbstractClass{
@@ -281,10 +282,10 @@
         	concreteB.oper();
       }
     }
-    ```
-
-    * `接口实现`
-
+  ```
+  
+  * `接口实现`
+  
     ```java
     //接口 主要定义抽象方法及模版方法
     public interface AbstractInterface{
@@ -347,31 +348,32 @@
         	concreteB.oper();
       }
     }
-    ```
-
-  * 要点总结
-
+  ```
+  
+* 要点总结
+  
     * Template Method 模式是一种非常`基础性`的设计模式，在面向对象系统中有着大量的应用。它用最简洁的机制（抽象函数的多态）为很多应用程序框架提供了灵活的扩展点，是代码复用的主要实现结构。
     * 除了可以灵活应对子步骤的变化外，“不要调用我，让我来调用你”的方向控制结构是Template Method的典型应用。
-    * 在具体实现方面，被Template Method调用的抽象函数可以有具体实现，也可以没有任何实现，但一定要把它们设置为`protected`方法。
-
-  ####Strategy
-
+  * 在具体实现方面，被Template Method调用的抽象函数可以有具体实现，也可以没有任何实现，但一定要把它们设置为`protected`方法。
+  
+####Strategy
+  
   ```markdown
   定义一系列`算法`,把他们一个个封装起来，并且使它们可互相替换（`变化`）。该模式使得算法可独立于使用它的客户程序（`稳定`）而变化（`扩展`，子类化）。
+																																		 ---<<设计模式>> GOF
   ```
 
   * UML
 
   * 动机
-
-    * 在软件构件过程中，某些对象使用的`算法`可能`多种多样`，经常改变，如果将这些算法都编码到对象中，将会使对象变得异常复杂；而且有时候支持不使用的算法也是一个性能负担。
+  
+  * 在软件构件过程中，某些对象使用的`算法`可能`多种多样`，经常改变，如果将这些算法都编码到对象中，将会使对象变得异常复杂；而且有时候支持不使用的算法也是一个性能负担。
     * 如何在运行时根据需要透明的更改对象的算法？将算法与对象本身节藕，从而避免上述问题？
 
   * 代码实现
 
     * `传统`
-
+  
     ```java
     public class ClassA{
       //根据不同策略做不同操作，当现有策略无法支持扩展时，需要添加新的策略类型及对应操作
@@ -388,11 +390,11 @@
         	
         	//...
       }
-    }
+  }
     ```
 
     * `策略模式`
-
+  
     ```java
     //实际持有策略的使用者
     public class Content{
@@ -438,32 +440,33 @@
         	contentA.contentMethod();
        		contentA.contentMethod();
       }
-    }
+  }
     ```
 
   * 要点总结
-
+  
     * Strategy及其子类为组件提供了一系列`可重用的算法`，从而可以使得类型在运行时方便地根据需要在各个算法之间进行切换。
-    * Strategy模式提供了用条件判断语句以外的另一种选择，`消除条件判断语句`，就是在解耦合。含有许多条件判断语句的代码通常都需要Strategy模式。
+  * Strategy模式提供了用条件判断语句以外的另一种选择，`消除条件判断语句`，就是在解耦合。含有许多条件判断语句的代码通常都需要Strategy模式。
     * 如果Strategy对象没有实例变量，那么各个上下文可以共享同一个Strategy对象，从而节省对象开销。
 
   #### Observer/Event
-
+  
   ```markdown
-  定义对象间的一种一对多（`变化`）的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都能得到通知并自动更新。
-  ```
-
-  * UML
-
+定义对象间的一种一对多（`变化`）的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都能得到通知并自动更新。
+  																																			---<<设计模式>> GOF
+```
+  
+* UML
+  
   * 动机
 
     * 在软件构件过程中，我们需要为某些对象建立一种“`通知依赖关系`”------一个对象（目标对象）的状态发生改变，所有的依赖对象（观察者对象）都将得到通知。如果这样的依赖关系过于紧密，将使软件不能很好地抵御变化。
-    * 使用面向对象技术，可以将这种依赖关系弱化，并形成一种稳定的依赖关系。从而实现软件体系结构的松耦合。 
-
-  * 代码实现
-
+  * 使用面向对象技术，可以将这种依赖关系弱化，并形成一种稳定的依赖关系。从而实现软件体系结构的松耦合。 
+  
+* 代码实现
+  
     * `传统`
-
+  
     ```java
     public class MainClass{
       private FeildClass feild1;
@@ -510,12 +513,12 @@
     }
     
     public class State{
-      // ...随便干什么啦
+    // ...随便干什么啦
     }
-    ```
-
+  ```
+  
     * `模式实现`
-
+  
     ```java
     // 稳定部分 
     
@@ -581,41 +584,42 @@
         Observer observer = new ConcreteObserver();
         subject.attach(observer);
         subject.setState(new Object());
-      }
     }
-    ```
-
+    }
+  ```
+  
   * 要点总结
-
+  
     * 使用面向对象的抽象，Observer模式使得我们可以`独立地改变`目标与观察者，从而使二者之间的依赖关系达致松耦合。
-    * 目标发送通知时，`无需指定观察者`，通知（可以携带通知信息作为参数）会自动传播。
+  * 目标发送通知时，`无需指定观察者`，通知（可以携带通知信息作为参数）会自动传播。
     * 观察者自己决定是否需要订阅通知，目标对象对此一无所知。
-    * Observer模式是基于事件的UI框架中非常常用的设计模式，也是MVC模式的一个重要组成部分。
-
+  * Observer模式是基于事件的UI框架中非常常用的设计模式，也是MVC模式的一个重要组成部分。
+  
   ### 单一职责
-
+  
   * 在软件组件的设计中，如果`责任划分`的不清晰，使用`继承`得到的结果往往是随着需求的变化，子类急剧膨胀，同时充斥着重复代码，这时候的关键是划清责任。
-  * 典型模式
+* 典型模式
     * Decorator
-    * Bridge
-
+  * Bridge
+  
   #### Decorator
-
-  ```markdown
+  
+```markdown
   动态（`组合`）地给一个对象增加一些额外的职责。就增加功能而言，Decorator模式比生成子类（`继承`）更为灵活（消除重复代码&减少子类个数）。
+																																			---<<设计模式>> GOF
   ```
 
   * UML
-
-  * 动机
-
-    * 在某些情况下我们可能会“过度地使用继承来扩展对象的功能”，由于继承为类型引入的`静态特质`(永远不可能变)，使得这种扩展方式缺乏灵活性；并且随着子类的增多（扩展功能的增多），各种子类的组合（扩展功能的组合）会导致更多子类的膨胀。
+  
+* 动机
+  
+  * 在某些情况下我们可能会“过度地使用继承来扩展对象的功能”，由于继承为类型引入的`静态特质`(永远不可能变)，使得这种扩展方式缺乏灵活性；并且随着子类的增多（扩展功能的增多），各种子类的组合（扩展功能的组合）会导致更多子类的膨胀。
     * 如何使“对象功能的扩展”能够根据需要来动态的实现？同时避免“扩展功能的增多”带来的子类膨胀问题？从而使得任何“功能扩展变化”所导致的影响降为最低？
 
   * 代码实现
-
+  
     * `传统`
-
+  
     ```java
     public class Stream {
       public abstract void read();
@@ -725,13 +729,13 @@
       @override
       public void read(){
         // ... 加密操作
-        super.read();
+      super.read();
       }
-    }
+  }
     ```
-
+  
     * `模式`
-
+  
     ```java
     public abstract class Component{
       public abstract void operation();
@@ -777,34 +781,35 @@
       @Override
       public void operation(){
         // ...
-        super.operation();
+      super.operation();
       }
-    }
+  }
     ```
-
+  
   * 要点总结
 
     * 通过采用`组合`而`非继承`的手法，Decorator模式实现了在`运行时动态扩展`对象功能的能力，而且可以根据需要扩展多个功能。避免了使用继承带来的“`灵活性差`”和“`多子类衍生`问题”。
-    * Decorator类在`接口上`表现为`is-a` Component的`继承关系`，即Decorator类继承了Component类所具有的接口。但在`实现上`又表现为`has-a` Component的`组合关系`，即Decorator类又使用了另外一个Component类。
+  * Decorator类在`接口上`表现为`is-a` Component的`继承关系`，即Decorator类继承了Component类所具有的接口。但在`实现上`又表现为`has-a` Component的`组合关系`，即Decorator类又使用了另外一个Component类。
     * Decorator模式的目的并非解决“多子类衍生的多继承”问题，Decorator模式应用的要点在于解决“主体类在`多个方向`上的`扩展`功能”------是为“装饰”的含义。
-
+  
   #### Bridge
 
   ```markdown
-  将抽象部分（`业务功能`）与实现部分（`平台实现`）分离，使它们都可以独立的变化。
-  ```
-
+将抽象部分（`业务功能`）与实现部分（`平台实现`）分离，使它们都可以独立的变化。
+  																																			---<<设计模式>> GOF
+```
+  
   * UML
 
   * 动机
 
     * 由于某些类型的`固有的实现逻辑`，使得它们具有`两个变化的维度`，乃至`多个维度的变化`。
-    * 如何应对这种“多维度的变化”？如何利用面向对象技术来使得类型可以轻松地沿着两个乃至多个方向变化，而不引入额外的复杂度？
-
+  * 如何应对这种“多维度的变化”？如何利用面向对象技术来使得类型可以轻松地沿着两个乃至多个方向变化，而不引入额外的复杂度？
+  
   * 代码实现
-
+  
     * `传统`
-
+  
     ```java
     public abstract class Messager {
       public abstract void login();
@@ -1063,14 +1068,14 @@
     }
     
     public MessagerPerfact extends Messager {
-      // ...
+    // ...
     }
-    
+  
     
     ```
-
+  
     * `模式实现`
-
+  
     ```java
     // 平台层抽象
     public abstract class Abstraction {
@@ -1106,44 +1111,45 @@
     }
     
     public class ConcreteImplementorB extends Implementor {
-      public void operationImp(){
+    public void operationImp(){
         // ...
-      }
+    }
     }
     ```
-
-  * 要点总结
-
-    * Bridge模式使用“对象间的`组合`关系”解藕了`抽象`和`实现`之间固有的绑定关系，使得抽象和实现可以沿着各自的维度来变化。所谓抽象和实现沿着各自维度的变化，即“子类化”它们。
+  
+* 要点总结
+  
+  * Bridge模式使用“对象间的`组合`关系”解藕了`抽象`和`实现`之间固有的绑定关系，使得抽象和实现可以沿着各自的维度来变化。所谓抽象和实现沿着各自维度的变化，即“子类化”它们。
     * Bridge模式有时候类似于`多继承`方案，但是多继承方案往往违背`单一职责`原则（即一个类只有一个变化的原因），复用性比较差。Bridge模式是比多继承方案更好的解决方案。
     * Bridge模式的应用一般中“两个非常强的变化维度”，有时一个类有多于两个的变化维度，这是可以使用Bridge的扩展模式。
-
+  
   ### 对象创建
-
+  
   * 通过“对象创建”模式绕开`new`，来避免对象创建（new）过程中所导致的`紧耦合`（`依赖具体类`），从而支持对象创建的稳定。它是接口抽象之后的第一步工作。
-  * 典型模式
+* 典型模式
     * Factory Method
-    * Abstract Factory
+  * Abstract Factory
     * Prototype
     * Builder
-
-  #### Factory Method
-
-  ```markdown
+  
+#### Factory Method
+  
+```markdown
   定义一个用于`创建对象`的`接口`，让子类决定实例化哪一个类。Factory Method使得一个类的实例话延迟（目的：`解耦`，手段：`接口`函数）。
+																																			---<<设计模式>> GOF
   ```
-
-  * UML
-
-  * 动机
-
-    * 在软件系统中，经常面临着`创建对象`的工作；由于`需求的变化`，需要创建的对象的具体`类型经常变化`。
+  
+* UML
+  
+* 动机
+  
+  * 在软件系统中，经常面临着`创建对象`的工作；由于`需求的变化`，需要创建的对象的具体`类型经常变化`。
     * 如何应对这种变化？如何绕开常规的对象创建方法（new），提供一种“封装机制”来避免客户程序和这种“具体对象创建工作”的紧耦合？
-
+  
   * 代码实现
-
+  
     * `传统`
-
+  
     ```java
     public class MainFormClass{
       
@@ -1238,15 +1244,15 @@
         this.factory = factory;
       }
       
-      public void oper(){
+    public void oper(){
         Splitter imgSplitter = factory.createSplitter();
-        imgSplitter.oper();
+      imgSplitter.oper();
       }
     }
     ```
-
+  
     * `模式实现`
-
+  
     ```java
     //稳定部分
     public abstract class Product {}
@@ -1259,9 +1265,9 @@
     public class ConcreteProduct extends Product {}
     
     public class ConcreteCretor implements creator {
-      @Override
+    @Override
       public Product factoryMethod(){
-        return new ConcreteProduct();
+      return new ConcreteProduct();
       }
     }
     ```
@@ -1275,7 +1281,8 @@
   #### Abstract Factory
 
   ```markdown
-  提供一个`接口`，让该接口负责创建`一系列`“`相关`或者`相互依赖`的对象”，无需指定它们具体的类。
+提供一个`接口`，让该接口负责创建`一系列`“`相关`或者`相互依赖`的对象”，无需指定它们具体的类。
+  																																			---<<设计模式>> GOF
   ```
 
   - UML
@@ -1284,11 +1291,11 @@
 
     - 在软件系统中，经常面临着“`一系列`相互依赖的对象”的创建工作；同时，由于需求的变化，往往存在更多系列对象的创建工作。
     - 如何应对这种变化？如何绕开常规的对象创建方法（new），提供一种“封装机制”来避免客户程序和这种“`多系列`具体对象创建工作”的紧耦合？
-
+  
   - 代码实现
-
+  
     - `传统`
-
+  
     ```java
     public class MainClass {
       public static void mian(String[] args){
@@ -1298,16 +1305,16 @@
         Product2Factory product2Factory = new Product2Factory();
         Product2 product2 = product2Factory.create();
         
-        Product3Factory product3Factory = new Product3Factory();
+      Product3Factory product3Factory = new Product3Factory();
         Product3 product3 = product3Factory.create();
-      }
+    }
     }
     
     //面对具有相关性的多个类型的对象创造，会有大量的工厂类，可不可以用一个工厂来生成不同的类，生产一组相关性组件
     ```
-
+  
     - `模式实现`
-
+  
     ```java
     public abstract Product1 {}
     public abstract Product2 {}
@@ -1325,23 +1332,23 @@
       public Product1 createProduct1(){
         return new ConcreteProduct1();
       }
-      
+    
       @Override
-      public Product2 createProduct2(){
+    public Product2 createProduct2(){
         return new ConcreteProduct2();
       }
     }
-    ```
-
-  - 要点总结
-
+  ```
+  
+- 要点总结
+  
     - 如果没有应对“`多系列`对象构件”的需求变化，则没有必要使用Abstract Factory模式，这时候使用简单的工厂完全可以。
     - “系列对象”指的是在某一`特定系列`下的对象之间有相互`依赖`、或`作用`的关系。不同系列的对象之间不能相互依赖。
-    - Abstract Factory模式主要在于应对“`新系列`”的需求变动。其缺点在于难以应对“新对象”的需求变动。
-
-  #### Prototype
-
-  ```markdown
+  - Abstract Factory模式主要在于应对“`新系列`”的需求变动。其缺点在于难以应对“新对象”的需求变动。
+  
+#### Prototype
+  
+```markdown
   使用`原型实例`指定创建对象的种类，然后通过`拷贝`这些原型来创建新的对象。
   ```
 
@@ -1351,11 +1358,11 @@
 
     - 在软件系统中，经常面临着“某些`结构复杂`的对象”的创建工作；由于需求的`变化`，这些对象经常面临着剧烈的变化，但是它们却拥有比较`稳定一致的接口`。
     - 如何应对这种变化？如何想“客户程序（使用这些对象的程序）”隔离出“这些易变对象”，从而使得“依赖这些易变对象的客户程序”不随着需求改变而改变？
-
+  
   - 代码实现
-
+  
     - `传统`
-
+  
     ```java
     public abstract class Splitter {
       public abstract void oper();
@@ -1379,16 +1386,16 @@
       }
     
       @Override
-      public abstract Splitter clone(){
+    public abstract Splitter clone(){
       	// clone
-      }
+    }
     }
     
     // 将工厂方法中产品和工厂合并
     ```
-
+  
     - `模式实现`
-
+  
     ```java
     public interface Prototype extends Cloneable {
       public Prototype clone();
@@ -1411,37 +1418,38 @@
     public class Client {
       public void oper(){
         // ... Prototype clone
-      }
     }
-    
+    }
+  
     //这样能干嘛？什么时候用？也工厂方法有啥区别？
     
     //某些复杂结构类的初始化创建比较复杂，通过深度clone会比工厂方法更方便。深度clone即复制对象的值而非引用
-    ```
-
-  - 要点总结
-
+  ```
+  
+- 要点总结
+  
     - Prototype模式同样用于隔离类对象的`使用者`和`具体类型`（易变类）之间的耦合关系，它同样要求这些“`易变类`”拥有“`稳定的接口`”。
     - Prototype模式对于“如何创建易变类的实体对象”采用“原型克隆”的方法来做，它使得我们可以非常灵活的动态创建“拥有某些稳定接口”的新对象------所需工作仅仅是注册一个新类的对象（即原型），然后在任何需要的地方clone。
-    - Prototype模式中的clone方法可以利用某些框架中的序列化来实现深拷贝。
-
-  #### Builder
-
-  ```markdown
+  - Prototype模式中的clone方法可以利用某些框架中的序列化来实现深拷贝。
+  
+#### Builder
+  
+```markdown
   将一个复杂对象的`构建`与其`表示`相分离，使得同样的构建过程（稳定）可以创建不同的表示（变化）。
-  ```
-
-  - UML
-
-  - 动机
-
+  																																			---<<设计模式>> GOF
+```
+  
+- UML
+  
+- 动机
+  
     - 在软件系统中，有时候面临着“一个`复杂对象`”的创建工作，其通常由各个部分的`子对象`用一定的`算法`构成；由于需求的变化，这个复杂对象的`各个部分`经常面临着剧烈的`变化`，但是将它们`组合在一起的算法`却相对`稳定`。（模版方法）
     - 如何应对这种变化？如何提供一种“封装机制”来隔离出“复杂对象的各个部分”的变化，从而保存系统中的“稳定构建算法”不随着需求改变而改变？
-
+  
   - 代码实现
-
+  
     - `传统`
-
+  
     ```java
     public abstract class House {
       public void House() { //构造器中定义构建过程，子类初始化是会自动调用相应的方法，但这里构造太繁琐麻烦了
@@ -1508,17 +1516,17 @@
     }
     
     public abstract class HouseBuilder{
-      public abstract void buildPart1();
+    public abstract void buildPart1();
       public abstract void buildPart2();
-      public abstract void buildPart3();
+    public abstract void buildPart3();
       public abstract void buildPart4();
       public abstract void buildPart5();
     }
     
     ```
-
+  
     - `模式实现`
-
+  
     ```java
     public class Product{}
     
@@ -1557,46 +1565,47 @@
       
       public void build3(){
         // ...
-      }
+    }
       
-      public Product getResult(){
+    public Product getResult(){
         // ... return a result by build*
         return product;
       }
-    }
+  }
     ```
 
   - 要点总结
-
+  
     - Builder模式主要用于“`分步骤`构建一个复杂的对象”。在这其中“分步骤”是一个`稳定`的算法，而复杂对象的`各个部分`则`经常变化`。
     - 变化点在哪里，封装哪里------Builder模式主要在于应对“复杂对象各个部分”的频繁需求变动。其缺点在于难以应对“分步骤构建算法”的需求变动。
-    - 在Builder模式中，要注意不同语言中构造器内调用抽象函数的差别。
-
-  ### 对象性能
-
+  - 在Builder模式中，要注意不同语言中构造器内调用抽象函数的差别。
+  
+### 对象性能
+  
   - 面向对象很好地解决了“`抽象`”的问题，但是必不可免地要付出一定的代价。对于通常情况来讲，面向对象的成本大都可以忽略不计。但是某些情况，面向对象所带来的成本必须谨慎处理。
   - 典型模式
-    - Singleton
+  - Singleton
     - Flyweight
 
   #### Singleton
 
   ```markdown
-  public 
-  ```
-
-  - UML
-
-  - 动机
-
+   保证一个类仅有一个实例，并提供一个该实例的全局访问点。
+   																																			---<<设计模式>> GOF
+```
+  
+- UML
+  
+- 动机
+  
     - 在软件系统中，经常有这样一些特殊的类，必须保证它们中系统中只存在`一个实例`，才能确保它们的`逻辑正确性`、以及`良好的效率`。
     - 如何`绕开`常规的`构造器`，提供一种机制来保证一个类只有一个实例？
     - 这应该是类设计者的责任，而不是使用者的责任。
-
+  
   - 代码实现
-
+  
     - `传统`
-
+  
     ```java
     /**
      * 单例模式
@@ -1719,91 +1728,183 @@
             if (singleton == null){
                 synchronized (Singleton7.class){
                     if (singleton == null){
-                        singleton = new Singleton7();//加载类、校验类、分配内存、初始化静态成员、初始化标准模式值、调用构造器、返回引用地址，cpu中这些顺序可能重排序，可能分配内存后就返回内存地址，但对象并未初始化，并不能使用
+                        singleton = new Singleton7();//加载类、校验类、分配内存、初始化静态成员、初始化标准模式值、调用构造器、返回引用地址，cpu中这些顺序可能重排序，可能分配内存后就返回内存地址，但对象并未初始化，并不能使用，这里需要编译器优化，java中volatitle关键字就有效的保证了不重排序优化
                         return singleton;
-                    }
+                  }
                 }
-            }
+          }
             return singleton;
         }
     }
     
     // 构造私有化，避免一些线程安全问题，利用锁、类加载机制
     ```
-
+  
     - `模式实现`
-
+  
     ```java
     public class Singleton {
       private Singleton instance;
       
       private Singleton(){}
-      
+    
       public static getInstance(){
-        if(instance == null){
+      if(instance == null){
           instance = new Singleton();
         }
         return instance;
-      }
     }
-    ```
-
-  - 要点总结
-
-  #### Flyweight
-
-  ```markdown
-  public 
+    }
   ```
-
+  
+  - 要点总结
+  
+  - Singleton模式中的实例构造器可以设置为protected以允许子类派生。
+    - Singleton模式一般不要支持开背构造函数和clone，因为这有可能导致多个对象实例，与Singleton模式的初衷违背。
+  - 如何实现多线程安全？注意对双检查锁的正确实现。
+  
+#### Flyweight
+  
+```markdown
+  运用共享技术有效地支持大量细粒度的对象。 
+																																			---<<设计模式>> GOF
+  ```
+  
   - UML
 
   - 动机
+
+    - 在软件系统采用纯粹对象方案的问题在于大量`细粒度的对象`会很快充斥在系统中，从而带来很高的运行时代价------主要指`内存需求`方案的代价。
+    - 如何在避免大量细粒度对象问题的同时，让外部客户程序仍然能够透明的使用面向对象的方式来进行操作？
+    - 比如字符串的使用，常常占用大量内存；字符串大多使用共享技术；
 
   - 代码实现
 
     - `传统`
 
     ```java
-    
-    ```
-
+    //字体
+    public class Font{}
+  
+    public class FontFactory {
+    Map<String, Font> fontPool = new HashMap<>();
+      
+      public Font getFont(String key){
+        if(flyweights.containsKey(key)){
+        return flyweights.get(key);
+        }else{
+        // new flyweight
+          // flyweights.put(key, flyweight)
+        // return flyweight
+        }
+    }
+    }
+  ```
+  
     - `模式实现`
-
-    ```java
+  
+  ```java
+    public abstract class Flyweight{
+    public abstract void oper();
+    }
     
+    public class FlyweightFactory {
+    Map<Ojbect, Flyweight> flyweights = new HashMap<>();
+      
+      public void getFlyweight(Object key){
+        if(flyweights.containsKey(key)){
+          return flyweights.get(key);
+        }else{
+          // new flyweight
+          // flyweights.put(key, flyweight)
+          // return flyweight
+        }
+      }
+    }
+    
+    public class ConcreteFlyweight extends Flyweight {
+      	@Override
+      	public void oper(){
+          // ...
+        }
+    }
+    
+    public class UnsharedConcreteFlyweight extends Flyweight {
+      	@Override
+      	public void oper(){
+          // ...
+        }
+    }
     ```
-
+  
   - 要点总结
-
+  
+    - 面向对象很好地解决了抽象性的问题，但是作为一个运行在机器中的程序实体，我们需要考虑对象的代价问题。Flyweight主要解决面向对象的代价问题，一般不触及面向对象的抽象问题。
+    - Flyweight采用对象`共享`的做法来降低系统中对象的个数，从而降低细粒度对象给系统带来的内存压力。在具体实现方面，要注意对象状态的处理。
+    - 对象的数量太大从而导致对象内存开销加大------什么样的数量才算大？这需要我们仔细的根据具体应用情况进行评估，而不能凭空臆断。
+  
   ### ****
-
+  
   - ...。
   - 典型模式
     - ...
-
+  
   #### #####
-
+  
   ```markdown
   
   ```
-
+  
   - UML
-
+  
   - 动机
-
+  
   - 代码实现
-
+  
     - `传统`
-
+  
     ```java
     
     ```
-
+  
     - `模式实现`
-
+  
     ```java
     
     ```
-
+  
   - 要点总结
+  
+  ### ****
+  
+  - ...。
+  - 典型模式
+    - ...
+  
+  #### #####
+  
+  ```markdown
+  
+  ```
+  
+  - UML
+  
+  - 动机
+  
+  - 代码实现
+  
+    - `传统`
+  
+    ```java
+    
+    ```
+  
+    - `模式实现`
+  
+    ```java
+    
+    ```
+  
+  - 要点总结
+  
+  
