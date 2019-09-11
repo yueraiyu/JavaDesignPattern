@@ -58,7 +58,7 @@
 ## GOF模式分类
 
 ```markdown
-在变化和稳定之间寻找隔离点
+	在变化和稳定之间寻找隔离点
 ```
 
 * 目的分类
@@ -132,7 +132,7 @@
 #### Template Method
 
 ```markdown
-定义一个操作中的算法的骨架（`稳定`），而将一些步骤延迟（`变化`）到子类中；Template Method使得子类可以不改变（`复用`）一个算法的结构即可重定义（override重写）该算法的某些特定步骤；模版方法稳定中包含变化；适用于流程固定，但部分细节可能不同。
+	定义一个操作中的算法的骨架（`稳定`），而将一些步骤延迟（`变化`）到子类中；Template Method使得子类可以不改变（`复用`）一个算法的结构即可重定义（override重写）该算法的某些特定步骤；模版方法稳定中包含变化；适用于流程固定，但部分细节可能不同。
 																																	---<<设计模式>> GOF
 ```
 
@@ -385,7 +385,7 @@
         	
         	//...
       }
-  }
+    }
     ```
 
     * `策略模式`
@@ -435,20 +435,19 @@
         	contentA.contentMethod();
        		contentA.contentMethod();
       }
-  }
+    }
     ```
 
   * 要点总结
   
     * Strategy及其子类为组件提供了一系列`可重用的算法`，从而可以使得类型在运行时方便地根据需要在各个算法之间进行切换。
-  * Strategy模式提供了用条件判断语句以外的另一种选择，`消除条件判断语句`，就是在解耦合。含有许多条件判断语句的代码通常都需要Strategy模式。
-    
+      * Strategy模式提供了用条件判断语句以外的另一种选择，`消除条件判断语句`，就是在解耦合。含有许多条件判断语句的代码通常都需要Strategy模式。
     * 如果Strategy对象没有实例变量，那么各个上下文可以共享同一个Strategy对象，从而节省对象开销。
 
   #### Observer/Event
 
   ```markdown
-定义对象间的一种一对多（`变化`）的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都能得到通知并自动更新。
+	定义对象间的一种一对多（`变化`）的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都能得到通知并自动更新。
   																																			---<<设计模式>> GOF
   ```
 
@@ -584,11 +583,11 @@
     }
     ```
   
-  * 要点总结
-  
-    * 使用面向对象的抽象，Observer模式使得我们可以`独立地改变`目标与观察者，从而使二者之间的依赖关系达致松耦合。
+* 要点总结
+
+  * 使用面向对象的抽象，Observer模式使得我们可以`独立地改变`目标与观察者，从而使二者之间的依赖关系达致松耦合。
   * 目标发送通知时，`无需指定观察者`，通知（可以携带通知信息作为参数）会自动传播。
-    * 观察者自己决定是否需要订阅通知，目标对象对此一无所知。
+  * 观察者自己决定是否需要订阅通知，目标对象对此一无所知。
   * Observer模式是基于事件的UI框架中非常常用的设计模式，也是MVC模式的一个重要组成部分。
 
 ### 单一职责
@@ -600,7 +599,7 @@
 #### Decorator
 
 ```markdown
-  动态（`组合`）地给一个对象增加一些额外的职责。就增加功能而言，Decorator模式比生成子类（`继承`）更为灵活（消除重复代码&减少子类个数）。
+ 		动态（`组合`）地给一个对象增加一些额外的职责。就增加功能而言，Decorator模式比生成子类（`继承`）更为灵活（消除重复代码&减少子类个数）。
 																																			---<<设计模式>> GOF
 ```
 
@@ -789,7 +788,7 @@
 #### Bridge
 
 ```markdown
-将抽象部分（`业务功能`）与实现部分（`平台实现`）分离，使它们都可以独立的变化。
+	将抽象部分（`业务功能`）与实现部分（`平台实现`）分离，使它们都可以独立的变化。
 																																			---<<设计模式>> GOF
 ```
 
@@ -863,19 +862,19 @@
     
     public PCMessagerLite extends PCMessagerBase{
       @Override
-      public abstract void login(){
+      public void login(){
         connect();
         // ...
       }
       
       @Override
-      public abstract void sendMessage(){
+      public void sendMessage(){
         writeText();
         // ...
       }
       
       @Override
-      public abstract void sendPicture(){
+      public void sendPicture(){
         drawShape();
         // ...
       }
@@ -883,7 +882,7 @@
     
     public PCMessagerPerfact extends PCMessagerBase{
       @Override
-      public abstract void login(){
+      public void login(){
         playSound();
         // ...
         connect();
@@ -891,7 +890,7 @@
       }
       
       @Override
-      public abstract void sendMessage(){
+      public void sendMessage(){
         playSound();
         // ...
         writeText();
@@ -899,7 +898,7 @@
       }
       
       @Override
-      public abstract void sendPicture(){
+      public void sendPicture(){
         playSound();
         // ...
         drawShape();
@@ -909,19 +908,19 @@
     
     public MobileMessagerLite extends MobileMessagerBase{
       @Override
-      public abstract void login(){
+      public void login(){
         connect();
         // ...
       }
       
       @Override
-      public abstract void sendMessage(){
+      public void sendMessage(){
         writeText();
         // ...
       }
       
       @Override
-      public abstract void sendPicture(){
+      public void sendPicture(){
         drawShape();
         // ...
       }
@@ -929,7 +928,7 @@
     
     public MobileMessagerPerfact extends MobileMessagerBase{
       @Override
-      public abstract void login(){
+      public void login(){
         playSound();
         // ...
         connect();
@@ -937,7 +936,7 @@
       }
       
       @Override
-      public abstract void sendMessage(){
+      public void sendMessage(){
         playSound();
         // ...
         writeText();
@@ -945,7 +944,7 @@
       }
       
       @Override
-      public abstract void sendPicture(){
+      public void sendPicture(){
         playSound();
         // ...
         drawShape();
@@ -960,19 +959,19 @@
       // ... constractor
       
       @Override
-      public abstract void login(){
+      public void login(){
         messager.connect();
         // ...
       }
       
       @Override
-      public abstract void sendMessage(){
+      public void sendMessage(){
         messager.writeText();
         // ...
       }
       
       @Override
-      public abstract void sendPicture(){
+      public void sendPicture(){
         messager.drawShape();
         // ...
       }
@@ -984,7 +983,7 @@
       // ... constractor
       
       @Override
-      public abstract void login(){
+      public void login(){
         messager.playSound();
         // ...
         messager.connect();
@@ -992,7 +991,7 @@
       }
       
       @Override
-      public abstract void sendMessage(){
+      public void sendMessage(){
         messager.playSound();
         // ...
         messager.writeText();
@@ -1000,7 +999,7 @@
       }
       
       @Override
-      public abstract void sendPicture(){
+      public void sendPicture(){
         messager.playSound();
         // ...
         messager.drawShape();
@@ -1130,7 +1129,7 @@
 #### Factory Method
 
 ```markdown
-  定义一个用于`创建对象`的`接口`，让子类决定实例化哪一个类。Factory Method使得一个类的实例话延迟（目的：`解耦`，手段：`接口`函数）。
+	定义一个用于`创建对象`的`接口`，让子类决定实例化哪一个类。Factory Method使得一个类的实例话延迟（目的：`解耦`，手段：`接口`函数）。
 																																			---<<设计模式>> GOF
 ```
 
@@ -1239,7 +1238,7 @@
       this.factory = factory;
     }
     
-  public void oper(){
+  	public void oper(){
       Splitter imgSplitter = factory.createSplitter();
     	imgSplitter.oper();
     }
@@ -1276,7 +1275,7 @@
 #### Abstract Factory
 
 ```markdown
-提供一个`接口`，让该接口负责创建`一系列`“`相关`或者`相互依赖`的对象”，无需指定它们具体的类。
+	提供一个`接口`，让该接口负责创建`一系列`“`相关`或者`相互依赖`的对象”，无需指定它们具体的类。
 																																			---<<设计模式>> GOF
 ```
 
@@ -1333,10 +1332,6 @@
       return new ConcreteProduct2();
     }
   }
-  ```
-
-  ```
-  
   ```
 - 要点总结
   
@@ -1433,7 +1428,7 @@
 #### Builder
 
 ```markdown
-  将一个复杂对象的`构建`与其`表示`相分离，使得同样的构建过程（稳定）可以创建不同的表示（变化）。
+	将一个复杂对象的`构建`与其`表示`相分离，使得同样的构建过程（稳定）可以创建不同的表示（变化）。
   																																			---<<设计模式>> GOF
 ```
 
@@ -1444,7 +1439,6 @@
     - 在软件系统中，有时候面临着“一个`复杂对象`”的创建工作，其通常由各个部分的`子对象`用一定的`算法`构成；由于需求的变化，这个复杂对象的`各个部分`经常面临着剧烈的`变化`，但是将它们`组合在一起的算法`却相对`稳定`。（模版方法）
     - 如何应对这种变化？如何提供一种“封装机制”来隔离出“复杂对象的各个部分”的变化，从而保存系统中的“稳定构建算法”不随着需求改变而改变？
     
-  
 - 代码实现
 
   - `传统`
@@ -1577,8 +1571,7 @@
 
   - Builder模式主要用于“`分步骤`构建一个复杂的对象”。在这其中“分步骤”是一个`稳定`的算法，而复杂对象的`各个部分`则`经常变化`。
   - 变化点在哪里，封装哪里------Builder模式主要在于应对“复杂对象各个部分”的频繁需求变动。其缺点在于难以应对“分步骤构建算法”的需求变动。
-
-- 在Builder模式中，要注意不同语言中构造器内调用抽象函数的差别。
+  - 在Builder模式中，要注意不同语言中构造器内调用抽象函数的差别。
 ### 对象性能
 
   - 面向对象很好地解决了“`抽象`”的问题，但是必不可免地要付出一定的代价。对于通常情况来讲，面向对象的成本大都可以忽略不计。但是某些情况，面向对象所带来的成本必须谨慎处理。
@@ -1589,7 +1582,7 @@
   #### Singleton
 
   ```markdown
-   保证一个类仅有一个实例，并提供一个该实例的全局访问点。
+	保证一个类仅有一个实例，并提供一个该实例的全局访问点。
    																																			---<<设计模式>> GOF
   ```
 
@@ -1601,7 +1594,6 @@
     - 如何`绕开`常规的`构造器`，提供一种机制来保证一个类只有一个实例？
     - 这应该是类设计者的责任，而不是使用者的责任。
     
-  
 - 代码实现
 
   - `传统`
@@ -1765,7 +1757,7 @@
 #### Flyweight
 
 ```markdown
-  运用共享技术有效地支持大量细粒度的对象。 
+	运用共享技术有效地支持大量细粒度的对象。 
 																																			---<<设计模式>> GOF
 ```
 
@@ -1786,7 +1778,7 @@
     public class Font{}
     
     public class FontFactory {
-    Map<String, Font> fontPool = new HashMap<>();
+    	Map<String, Font> fontPool = new HashMap<>();
       
       public Font getFont(String key){
         if(flyweights.containsKey(key)){
@@ -1841,21 +1833,28 @@
     - Flyweight采用对象`共享`的做法来降低系统中对象的个数，从而降低细粒度对象给系统带来的内存压力。在具体实现方面，要注意对象状态的处理。
     - 对象的数量太大从而导致对象内存开销加大------什么样的数量才算大？这需要我们仔细的根据具体应用情况进行评估，而不能凭空臆断。
 
-  ### ****
+  ### 接口隔离
 
-  - ...。
+  - 在`组件`构建过程中，某些`接口之间直接的依赖`常常会带来很多问题、甚至根本无法实现。采用添加一层`间接`(稳定)接口，来隔离本来互相紧密关联的接口是一种常见的解决方案。
   - 典型模式
-    - ...
+    - Facade
+    - Proxy
+    - Mediate
+    - Adapter
 
-  #### #####
+  #### Facade
 
   ```markdown
-  
+	为子系统中的一组接口提供一个一致（`稳定`）的界面，Facade模式定义了一个`高层接口`，这个接口使得这一子系统更加容易使用（复用）。
+																																					---<<设计模式>> GOF
   ```
 
   - UML
   
   - 动机
+  
+    - `组件的客户`和`组件中各种复杂的子系统`有了过多的`耦合`，随着外部客户程序和各子系统的演化，这种过多的耦合面临很多变化的挑战。
+    - 如何简化外部客户程序和系统间的交互接口？如何将外部客户程序的演化和内部子系统的变化之间的依赖相互解藕？
   
   - 代码实现
   
@@ -1873,18 +1872,525 @@
   
   - 要点总结
 
-  ### ****
+      - 从客户程序的角度来看，Facade模式简化了整个组件系统的接口，对于组件内部与外部客户程序来说，达到了一种“解耦”的效果------内部子系统的任何变化不会影响到Facade接口的变化。
+      - Facade设计模式更注重从`架构`的层次去看整个系统，而不是单个类的层次。Facade很多时候更是一种架构设计模式。
+      - FAcade设计模式并`非`一个`集装箱`，可以任意的放进任何多个对象。Facade模式中组件的内部应该是“相互`耦合关系`比较大的一系列组件”，而不是简单的功能集合。
+      - 对外松耦合，对内高内聚。
 
-  - ...。
-  - 典型模式
-    - ...
+#### Proxy
 
-  #### #####
+```markdown
+	为其他对象提供一种代理以控制（`隔离`，使用接口）对这个对象的访问。
+																																					---<<设计模式>> GOF
+```
 
-  ```markdown
+- UML
+
+- 动机
+
+  - 在面向对象系统中，有些对象由于某种原因（比如对象创建的开销很大，或者某些操作需要安全控制，或者需要进程外的访问等），直接访问会给使用者、或者系统结构带来很多麻烦。
+  - 如何在不失去`透明操作`对象的同时来`管理/控制`这些对象特有的复杂性？增加一层`间接层`是软件开发中常见的解决模式。
+
+- 代码实现
+
+  - `传统`
+
+  ```java
+  public abstract class Subject{
+    public abstract void request();
+  }
+  
+  public RealSubject extends Subject{
+    @Override
+    public void request(){
+      // ...
+    }
+  }
+  
+  public Client {
+    private Subject subject;
+    
+    public Client(Subject subject){
+      this.subject = subject;
+    }
+    
+    public void do(){
+      // ...
+      subject.request();
+      // ...
+    }
+  }
+  ```
+
+  - `模式实现`
+
+  ```java
+  public abstract class Subject{
+    public abstract void request();
+  }
+  
+  public class Proxy extends Subject{
+    private Subject subject;
+    
+    public Proxy(Subject subject){
+      this.subject = subject;
+    }
+    
+    @Override
+    public void request(){
+      subject.request();
+    }
+  }
+  
+  public RealSubject extends Subject{
+    @Override
+    public void request(){
+      // ... 对realSubject的间接访问
+    }
+  }
+  ```
+
+- 要点总结
+
+  - “增加一层`间接层`”是软件系统中对很多复杂问题的一种常见解决方法。在面向对象系统中，直接使用某些对象会带来很多问题，作为间接层的proxy对象便是解决这一问题的常用手段。
+  - 具体proxy设计模式的`实现方法`、`实现粒度`都相差很大，有些可能对单个对象做细粒度的控制，如copy-on-write技术，有些可能对组件模式提供抽象代理层，在架构层次对对象做proxy。
+  - proxy并不一定要求保持接口完整的一致性，只要能够实现间接控制，有时候损及一些透明性是可以接受的。
+
+#### Adapter
+
+```markdown
+	将一个类的接口转换成客户希望的另一个接口。Adapter模式使得原本由于接口`不兼容`而不能一起工作的那些类可以一起工作。
+																																					---<<设计模式>> GOF
+```
+
+- UML
+
+- 动机
+
+  - 在软件系统中，由于应用环境的变化，常常需要将“一些现存的对象”放在新的环境应用中，但是新环境要求的接口是这些现存对象所不满足的。
+  - 如何应对这种“迁移的变化”？如何既能利用现有对象的良好表现，同时又能满足新的应用环境所要求的接口？
+
+- 代码实现
+
+  - `传统`
+
+  ```java
+  // 目标接口
+  public abstract class Target{
+    public abstract void process();
+  }
+  
+  //遗留接口
+  public abstract class Adaptee{
+    public abstract void foo();
+  }
+  
+  // 怎么把遗留接口适用于新接口，而不改变遗留接口，添加中间/间接层匹配
+  ```
+
+  - `模式实现 - 组合`
+
+  ```java
+  public abstract class Target{
+    public abstract void request();
+  }
+  
+  public class Adaptee{
+    public void specificRequest(){
+      // ...
+    }
+  }
+  
+  //组合实现 更灵活
+  public class Adapter extends Target{
+    private Adaptee adaptee;
+    
+    public Adapter(Adaptee adaptee){
+      this.adaptee = adaptee;
+    }
+    
+    @Override
+    public void request(){
+      adaptee.specificRequest();
+    }
+  }
+  ```
+
+  - `模式实现 - 继承`
+
+  ```java
+  public interface Target{
+    public void request();
+  }
+  
+  public class Adaptee{
+    public void specificRequest(){
+      // ...
+    }
+  }
+  
+  //继承实现	过度依赖父类，不灵活
+  public class Adapter extends Adaptee implements Target{
+    @Override
+    public void request(){
+      super.specificRequest();
+    }
+  }
+  ```
+
+- 要点总结
+
+  - Adapter模式主要应用于“希望复用一些现存的类，但是接口又与复用环境要求不一致”，中遗留代码复用、类库迁移等方面非常有用。
+  - GOF 23 定义了两种Adapter模式等实现结构：对象适配器和类适配器。但类适配器采用“多继承”但实现方式，一般不推荐使用。对象适配器采用“对象组合”的方式，更符合松耦合精神。
+  - Adapter模式可以实现的非常靓货，不必拘泥于GOF 23中定义的两种结构。例如，完全可以将Adapter模式中“现存对象”作为新的接口方法参数，来达到适配的目的。
+
+#### Mediate
+
+```markdown
+	用一个`中介对象`来`封装`（封装变化）一系列的`对象交互`。中介者使得对象不需要`显式`的相互引用（编译时依赖->运行时依赖），从而使其耦合松散（管理变化），而且可以独立的改变他们之间的交互。
+																																					---<<设计模式>> GOF
+```
+
+- UML
+
+- 动机
+
+  - 在软件构建过程中，经常会出现`多个对象`互相`关联交互`的情况，对象之间常常会维持一种复杂的应用关系，如果遇到一些需求的更改，这种直接的应用关系将面临不断的变化。
+  - 在这种情况下，我们可以使用一个“中介对象”来`管理对象间的关联关系`，避免相互交互的对象之间的紧耦合引用关系，从而更好的抵御变化。
+  - 调用通知规范？
+
+- 代码实现
+
+  - `传统`
+
+  ```java
   
   ```
 
+  - `模式实现`
+
+  ```java
+  
+  ```
+
+- 要点总结
+
+  - 将多个对象间复杂的关联关系解耦，Mediator模式将多个对象间的控制逻辑进行集中管理，变“多个对象交互关联”为“多个对象和一个中介者关联”，简化了系统的维护，抵御了可能的变化。
+- 随着控制逻辑的复杂化，Mediator具体对象的实现可能相当复杂，这时候可以对Mediator对象进行分解处理。
+  - Facade模式是解耦系统间（单向）的对象关联关系；Mediator模式是解耦系统内各个对象间（双向）的关联关系。
+  
+  ### 状态变化
+
+  - 在`组件构建`过程中，某些`对象的状态`经常面临变化，如何对这些变化进行有效的管理？同时又维持高层模块的稳定？“状态变化”模式为这一问题提供了一种解决方案。
+- 典型模式
+    - State
+    - Memento
+  
+#### State
+  
+  ```markdown
+  	允许一个对象在其内部状态改变时改变它的行为。从而使对象看起来似乎修改了其行为。
+  																																			---<<设计模式>> GOF
+  ```
+  
+  - UML
+  
+  - 动机
+  
+    - 在软件构建过程中，某些对象的`状态`如果改变，其`行为`也会随之而发生变化，比如文档处于只读状态，其支持的行为和读写状态支持的行为就可能完全不同。
+    - 如何在运行时根据对象的状态来透明地更改对象的行为？而不会为对象操作和状态转化之间应如紧耦合？
+  
+  - 代码实现
+  
+    - `传统`
+  
+    ```java
+    enum NetworkState {
+    Network_Open;
+      Network_Close;
+      Network_Connect;
+    }
+    //这里的枚举会不会添加新的状态？开闭原则
+    
+    public class NetworkProcessor {
+      private NetworkState state;
+      
+      public void oper1(){
+        if(state == Network_Open){
+          // ...
+          state = Network_Close;
+        }else if(state == Network_Close){
+          // ...
+          state = Network_Connect;
+        }else if(state == Network_Connect){
+          // ...
+          state = Network_Open;
+        }
+      }
+      
+      public void oper1(){
+        if(state == Network_Open){
+          // ...
+          state = Network_Connect;
+        }else if(state == Network_Close){
+          // ...
+          state = Network_Open;
+        }else if(state == Network_Connect){
+          // ...
+          state = Network_Close;
+        }
+      }
+    }
+    
+    //如果状态发生改变，则行为也会发生改变；有点像策略模式；但和策略又有些不同，策略提供指定算法操作，而状态的变更引起的操作怎么处理？针对每种状态提供对对应的操作，这样就扩展开放修改封闭了。
+    public abstract class NetworkState{ 
+      protected NetworkState nextState;
+      
+      public NetworkState(NetworkState nextState){
+        this.nextState = nextState;
+      }
+      
+      public abstract void oper1();
+      public abstract void oper2();
+      public abstract void oper2();
+    }
+    
+    public class OpenState extends NetworkState{
+      private static NetworkState state;
+      
+      private OpenState(){
+      }
+      
+      public static NetworkState getInstance(){
+        if(state == null){
+          state = new OpenState();
+        }
+        return state;
+      }
+      
+      @Override
+      public void oper1(){
+        nextState = CloseState.getInstance();
+      }
+      
+      @Override
+      public void oper2(){
+        nextState = ConnectState.getInstance();
+      }
+      
+      @Override
+      public void oper3(){
+        nextState = OpenState.getInstance();
+      }
+    }
+    
+    public class CloseState extends NetworkState{
+      private static NetworkState state;
+      
+      private CloseState(){
+      }
+      
+      public static NetworkState getInstance(){
+        if(state == null){
+          state = new CloseState();
+        }
+        return state;
+      }
+      
+      @Override
+      public void oper1(){
+        nextState = CloseState.getInstance();
+      }
+      
+      @Override
+      public void oper2(){
+        nextState = ConnectState.getInstance();
+      }
+      
+      @Override
+      public void oper3(){
+        nextState = OpenState.getInstance();
+      }
+    }
+    
+    public class ConnectState extends NetworkState{
+      private static NetworkState state;
+      
+      private ConnectState(){
+      }
+      
+      public static NetworkState getInstance(){
+        if(state == null){
+          state = new ConnectState();
+        }
+        return state;
+      }
+      
+      @Override
+      public void oper1(){
+        nextState = CloseState.getInstance();
+      }
+      
+      @Override
+      public void oper2(){
+        nextState = ConnectState.getInstance();
+      }
+      
+      @Override
+      public void oper3(){
+        nextState = OpenState.getInstance();
+      }
+    }
+    
+    public class NetworkProcess{
+      private NetworkState state;
+      
+      public NetworkProcess(NetworkState state){
+        this.state = state;
+      }
+      
+      public void oper1(){
+        state.oper1();
+        state = state.nextState;
+      }
+      
+      public void oper2(){
+        state.oper2();
+        state = state.nextState;
+      }
+      
+      public void oper3(){
+        state.oper3();
+        state = state.nextState;
+      }
+    } 
+    ```
+  
+    - `模式实现`
+  
+    ```java
+    public class Context{
+      private State state;
+      
+      public Context(State state){
+        this.state = state;
+      }
+      
+      public void request(){
+        state.handle();
+      }
+    }
+    
+    public abstract class State{
+      public abstract void handle();
+    }
+    
+    public class ConcreteStateA extends State{
+      public void handle(){
+        // ...
+      }
+    }
+    
+    public class ConcreteStateB extends State{
+      public void handle(){
+        // ...
+      }
+    }
+    ```
+  
+  - 要点总结
+  
+    - State模式将所有与一个特定状态相关的行为都放入一个State的子类对象中，在对象状态切换时，切换相应的对象；但同时维持State的接口，这样实现了具体操作与状态转换间的解耦。
+    - 为不同的状态引入不同的对象使得状态转换变得更加明确，而且可以保证不会出现状态不一致的情况，因为转换是原子性的-----即要么彻底转换过来，要么不转换。
+    - 如果State对象没有实例变量，那么各个上下文可以共享同一个State对象，从而节省对象开销。
+  
+  #### Memento
+  
+  ```markdown
+  	在不破坏`封装性`的前提下，捕获一个对象的`内部状态`，并在该对象之外保持这个状态。这样以后就可以将该对象恢复到原先保存的状态。
+  																																			---<<设计模式>> GOF
+  ```
+  
+  - UML
+  
+  - 动机
+  
+    - 在软件构建过程中，某些对象的`状态`在转换过程中，可能由于某种需要，要求程序能够`回溯`到对象之前处于某个点时到状态。如果使用一些公有接口来让其他对象得到对象的状态，便会暴露对象的细节实现。
+    - 如何实现对像状态的良好保持与恢复？但同时不会因此而破坏对象本身的封装性。
+  
+  - 代码实现
+  
+    - `传统`
+  
+    ```java
+    
+    ```
+  
+    - `模式实现`
+  
+    ```java
+    public class Memento{
+      private String state;
+      
+      public Memento(String state){
+        this.state = state;
+      }
+      
+      public String getState{return state;}
+      
+      public void setState(String s){state = s;}
+    }
+    
+    public class Originator{
+      private String state;
+      
+      public Originator(){}
+      
+      public Memento createMemento(){
+        Memento m = new Memento(state);
+        return m;
+      }
+      
+      public void setMemento(Memento m){
+        state = m.getState();
+      }
+      
+      public void updateState(String state){
+        this.state = state;
+      }
+    }
+    
+    public class Client{
+      public static void main(String[] args){
+        Originator originator = new Originator();
+        //存储备忘录
+        Memento memento = originator.createMemento();
+        //更新状态
+        originator.updateState();
+        //恢复
+        originator.setMemento(memento)
+      } 
+    }
+    ```
+  
+  - 要点总结
+  
+    - 备忘录（Memento）存储原发器（Originator）对象的内部状态，在需要时恢复原发器状态。
+    - Memento模式的核心是信息隐藏，即Originator需要向外界隐藏信息，保持其封装性。但同时又需要将状态保持到外界（Memento）。
+    - 由于现代语言运行时（如C#、Java等）都具有相当的对象序列化支持，因此往往采用效率较高、又较容易正确实现的序列化方案来实现Memento模式。
+  
+  ### ****
+  
+  - ...。
+  - 典型模式
+    - ...
+  
+  #### #####
+  
+  ```markdown
+  
+  ```
+  
   - UML
   
   - 动机
@@ -1892,17 +2398,17 @@
   - 代码实现
   
     - `传统`
-    
+  
     ```java
     
     ```
   
     - `模式实现`
-    
+  
     ```java
     
     ```
   
   - 要点总结
-
+  
   
