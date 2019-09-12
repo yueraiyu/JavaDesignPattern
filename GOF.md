@@ -2263,11 +2263,9 @@
     } 
     ```
     
-  
-    
   - `模式`
     ```java
-    public class Context{
+  public class Context{
       private State state;
     
       public Context(State state){
@@ -2295,9 +2293,7 @@
       }
     }
     ```
-  
-  
-  
+    
   - 要点总结
   
     - State模式将所有与一个特定状态相关的行为都放入一个State的子类对象中，在对象状态切换时，切换相应的对象；但同时维持State的接口，这样实现了具体操作与状态转换间的解耦。
@@ -2371,8 +2367,6 @@
     }
     ```
     
-    
-  
   - 要点总结
   
     - 备忘录（Memento）存储原发器（Originator）对象的内部状态，在需要时恢复原发器状态。
@@ -2454,8 +2448,6 @@
     }
   }
   ```
-  
-  
   
   - 要点总结
 
