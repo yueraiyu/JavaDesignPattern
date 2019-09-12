@@ -147,205 +147,208 @@
   
   * `传统操作`
   
-    ```java
-    public class ClassA{
-      public void oper1(){
-        //...
-      } 
-    
-      public void oper2(){
-        //...
-      }
-    
-      public void oper3(){
-        //...
-      }
+  ```java
+  public class ClassA{
+    public void oper1(){
+      //...
+    } 
+  
+    public void oper2(){
+      //...
     }
-    
-    public class ClassB{
-      public void oper4(){
-        //...
-      }
-    
-      public void oper5(){
-        //...
-      }
-    
-      //重复操作流程
-      public void oper(){
-        ClassA classA = new ClassA();
-        classA.oper1();
-        classA.oper2();
-        classA.oper3();
-        oper4();
-        oper5();
-      }
+  
+    public void oper3(){
+      //...
     }
-    
-    public class ClassC{
-      public void oper4(){
-        //...
-      }
-    
-      public void oper5(){
-        //...
-      }  
-    
-      //重复操作流程
-      public void oper(){
-        ClassA classA = new ClassA();
-        classA.oper1();
-        classA.oper2();
-        classA.oper3();
-        oper4();
-        oper5();
-      }
+  }
+  
+  public class ClassB{
+    public void oper4(){
+      //...
     }
-    
-    public class Client{
-      public static void main(String args[]){
-        ClassB classB = new ClassB();
-        ClassC classC = new ClassC();
-    
-        classB.oper();
-        classC.oper();
-      }
-    
-    ```
-    
+  
+    public void oper5(){
+      //...
+    }
+  
+    //重复操作流程
+    public void oper(){
+      ClassA classA = new ClassA();
+      classA.oper1();
+      classA.oper2();
+      classA.oper3();
+      oper4();
+      oper5();
+    }
+  }
+  
+  public class ClassC{
+    public void oper4(){
+      //...
+    }
+  
+    public void oper5(){
+      //...
+    }  
+  
+    //重复操作流程
+    public void oper(){
+      ClassA classA = new ClassA();
+      classA.oper1();
+      classA.oper2();
+      classA.oper3();
+      oper4();
+      oper5();
+    }
+  }
+  
+  public class Client{
+    public static void main(String args[]){
+      ClassB classB = new ClassB();
+      ClassC classC = new ClassC();
+  
+      classB.oper();
+      classC.oper();
+    }
+  }
+  
+  ```
+  
   * `抽象类实现`
   
-    ```java
-    //抽象类 主要定义抽象方法及模版方法
-    public abstract class AbstractClass{
-      //模版方法，定义为final，避免子类覆写篡改流程
-      public final void oper(){
-        oper1();
-        oper2();
-        oper3();
-      }
-    
-      //子类需要实现,定义具体操作
-      public abstract void oper1();
-      public abstract void oper2();
-      public abstract void oper3();
+  ```java
+  //抽象类 主要定义抽象方法及模版方法
+  public abstract class AbstractClass{
+    //模版方法，定义为final，避免子类覆写篡改流程
+    public final void oper(){
+      oper1();
+      oper2();
+      oper3();
     }
-    
-    //子类A
-    public class ConcreteClassA extends AbstractClass{
-      @Override
-      public void oper1(){
-        //...
-      }
-    
-      @Override
-      public void oper2(){
-        //...
-      }
-    
-      @Override
-      public void oper3(){
-        //...
-      }
+  
+    //子类需要实现,定义具体操作
+    public abstract void oper1();
+    public abstract void oper2();
+    public abstract void oper3();
+  }
+  
+  //子类A
+  public class ConcreteClassA extends AbstractClass{
+    @Override
+    public void oper1(){
+      //...
     }
-    
-    //子类B
-    public class ConcreteClassB extends AbstractClass{
-      @Override
-      public void oper1(){
-        //...
-      }
-    
-      @Override
-      public void oper2(){
-        //...
-      }
-    
-      @Override
-      public void oper3(){
-        //...
-      }
+  
+    @Override
+    public void oper2(){
+      //...
     }
-    
-    //调用
-    public class Client{
-      public static void main(String args[]){
-        AbstractClass concreteA = new ConcreteClassA();
-        AbstractClass concreteB = new ConcreteClassB();
-    
-        concreteA.oper();
-        concreteB.oper();
-      }
+  
+    @Override
+    public void oper3(){
+      //...
     }
-    
+  }
+  
+  //子类B
+  public class ConcreteClassB extends AbstractClass{
+    @Override
+    public void oper1(){
+      //...
+    }
+  
+    @Override
+    public void oper2(){
+      //...
+    }
+  
+    @Override
+    public void oper3(){
+      //...
+    }
+  }
+  
+  //调用
+  public class Client{
+    public static void main(String args[]){
+      AbstractClass concreteA = new ConcreteClassA();
+      AbstractClass concreteB = new ConcreteClassB();
+  
+      concreteA.oper();
+      concreteB.oper();
+    }
+  }
+  
+  
   ```
-    
-    * `接口实现`
-    
-    ```java
-    //接口 主要定义抽象方法及模版方法
-    public interface AbstractInterface{
-      //模版方法，java 8 可以在接口定义default方法，但是实现类可以覆盖，不安全
-      default void oper(){
-        oper1();
-        oper2();
-        oper3();
-      }
-    
-      //具体实现类需要实现,定义具体操作
-      public void oper1();
-      public void oper2();
-      public void oper3();
+  
+  * `接口实现`
+  
+  ```java
+  //接口 主要定义抽象方法及模版方法
+  public interface AbstractInterface{
+    //模版方法，java 8 可以在接口定义default方法，但是实现类可以覆盖，不安全
+    default void oper(){
+      oper1();
+      oper2();
+      oper3();
     }
-    
-    //实现类A
-    public class ConcreteClassA implements AbstractInterface{
-      @Override
-      public void oper1(){
-        //...
-      }
-    
-      @Override
-      public void oper2(){
-        //...
-      }
-    
-      @Override
-      public void oper3(){
-        //...
-      }
+  
+    //具体实现类需要实现,定义具体操作
+    public void oper1();
+    public void oper2();
+    public void oper3();
+  }
+  
+  //实现类A
+  public class ConcreteClassA implements AbstractInterface{
+    @Override
+    public void oper1(){
+      //...
     }
-    
-    //实现类B
-    public class ConcreteClassB implements AbstractInterface{
-      @Override
-      public void oper1(){
-        //...
-      }
-    
-      @Override
-      public void oper2(){
-        //...
-      }
-    
-      @Override
-      public void oper3(){
-        //...
-      }
+  
+    @Override
+    public void oper2(){
+      //...
     }
-    
-    //调用	
-    public class Client{
-      public static void main(String args[]){
-        AbstractInterface concreteA = new ConcreteClassA();
-        AbstractInterface concreteB = new ConcreteClassB();
-    
-        concreteA.oper();
-        concreteB.oper();
-      }
+  
+    @Override
+    public void oper3(){
+      //...
     }
-    
-    ```
+  }
+  
+  //实现类B
+  public class ConcreteClassB implements AbstractInterface{
+    @Override
+    public void oper1(){
+      //...
+    }
+  
+    @Override
+    public void oper2(){
+      //...
+    }
+  
+    @Override
+    public void oper3(){
+      //...
+    }
+  }
+  
+  //调用	
+  public class Client{
+    public static void main(String args[]){
+      AbstractInterface concreteA = new ConcreteClassA();
+      AbstractInterface concreteB = new ConcreteClassB();
+  
+      concreteA.oper();
+      concreteB.oper();
+    }
+  }
+  
+  
+  ```
   
 * 要点总结
 
