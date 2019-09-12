@@ -9,6 +9,8 @@ public abstract class AbstractDisplay {
         close();
     }
 
+    public AbstractDisplay(){}
+
     public abstract void open();
     public abstract void print();
     public abstract void close();

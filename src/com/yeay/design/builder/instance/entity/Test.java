@@ -2,26 +2,30 @@ package com.yeay.design.builder.instance.entity;
 
 import com.yeay.design.iterator.instance.Book;
 
-public class Test {
-    public static void main(String[] args) throws InterruptedException {
-        Runnable r = () -> {
-            Book book = new Book("book" + "_" + Thread.currentThread().getName());
-            System.out.println(book.getName());
-        };
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
-        int i = 0;
-        while (true){
-            Thread t = new Thread(r);
-            t.start();
-            if (i % 10 == 0){
-//                System.gc();
-                Book book = new Book("book" + "_" + i);
-                System.out.println(book.getName());
-                String s = "test" + i;
-                System.out.println(s.intern());
-            }
-            Thread.sleep(100000);
-            i ++;
-        }
+public class Test {
+    private static HashMap<Integer,String> map = new HashMap<Integer,String>(2, 0.75f);
+    public static void main(String[] args) {
+        map.put(5, "C");
+
+        new Thread("Thread1") {
+            @Override
+            public void run() {
+                map.put(7, "B");
+                System.out.println(map);
+            };
+        }.start();
+        new Thread("Thread2") {
+            @Override
+            public void run() {
+                map.put(3, "A");
+                        System.out.println(map);
+            };
+        }.start();
+
+        HashMap<String, String> linkedMap = new LinkedHashMap<>();
+//        linkedMap.put();
     }
 }
