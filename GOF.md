@@ -149,66 +149,66 @@
   
     ```java
     public class ClassA{
-      	public void oper1(){
-          //...
-        } 
-      
-    		public void oper2(){
-          //...
-        }
-      
-    		public void oper3(){
-          //...
-        }
+      public void oper1(){
+        //...
+      } 
+    
+      public void oper2(){
+        //...
+      }
+    
+      public void oper3(){
+        //...
+      }
     }
     
     public class ClassB{
-      	public void oper4(){
-          //...
-        }
-      
-    		public void oper5(){
-          //...
-        }
-      
-      	//重复操作流程
-      	public void oper(){
-          ClassA classA = new ClassA();
-          classA.oper1();
-          classA.oper2();
-          classA.oper3();
-          oper4();
-          oper5();
-        }
+      public void oper4(){
+        //...
+      }
+    
+      public void oper5(){
+        //...
+      }
+    
+      //重复操作流程
+      public void oper(){
+        ClassA classA = new ClassA();
+        classA.oper1();
+        classA.oper2();
+        classA.oper3();
+        oper4();
+        oper5();
+      }
     }
     
     public class ClassC{
-      	public void oper4(){
-          //...
-        }
-      
-    		public void oper5(){
-          //...
-        }  
-      
-      	//重复操作流程
-      	public void oper(){
-          ClassA classA = new ClassA();
-          classA.oper1();
-          classA.oper2();
-          classA.oper3();
-          oper4();
-          oper5();
-        }
+      public void oper4(){
+        //...
+      }
+    
+      public void oper5(){
+        //...
+      }  
+    
+      //重复操作流程
+      public void oper(){
+        ClassA classA = new ClassA();
+        classA.oper1();
+        classA.oper2();
+        classA.oper3();
+        oper4();
+        oper5();
+      }
     }
     
     public class Client{
       public static void main(String args[]){
-        	ClassB classB = new ClassB();
-        	ClassC classC = new ClassC();
-        
-        	classB.oper();
-        	classC.oper();
+        ClassB classB = new ClassB();
+        ClassC classC = new ClassC();
+    
+        classB.oper();
+        classC.oper();
       }
     
     ```
@@ -218,131 +218,133 @@
     ```java
     //抽象类 主要定义抽象方法及模版方法
     public abstract class AbstractClass{
-      	//模版方法，定义为final，避免子类覆写篡改流程
-    		public final void oper(){
-    			oper1();
-    			oper2();
-    			oper3();
-    		}
-    		
-      	//子类需要实现,定义具体操作
-    		public abstract void oper1();
-    		public abstract void oper2();
-    		public abstract void oper3();
+      //模版方法，定义为final，避免子类覆写篡改流程
+      public final void oper(){
+        oper1();
+        oper2();
+        oper3();
+      }
+    
+      //子类需要实现,定义具体操作
+      public abstract void oper1();
+      public abstract void oper2();
+      public abstract void oper3();
     }
     
     //子类A
     public class ConcreteClassA extends AbstractClass{
-      	@Override
-      	public void oper1(){
-          //...
-        }
-      
-      	@Override
-    		public void oper2(){
-          //...
-        }
-      
-      	@Override
-    		public void oper3(){
-          //...
-        }
+      @Override
+      public void oper1(){
+        //...
+      }
+    
+      @Override
+      public void oper2(){
+        //...
+      }
+    
+      @Override
+      public void oper3(){
+        //...
+      }
     }
     
     //子类B
     public class ConcreteClassB extends AbstractClass{
-      	@Override
-      	public void oper1(){
-          //...
-        }
-      
-      	@Override
-    		public void oper2(){
-          //...
-        }
-      
-      	@Override
-    		public void oper3(){
-          //...
-        }
+      @Override
+      public void oper1(){
+        //...
+      }
+    
+      @Override
+      public void oper2(){
+        //...
+      }
+    
+      @Override
+      public void oper3(){
+        //...
+      }
     }
     
     //调用
     public class Client{
       public static void main(String args[]){
-        	AbstractClass concreteA = new ConcreteClassA();
-        	AbstractClass concreteB = new ConcreteClassB();
-        
-        	concreteA.oper();
-        	concreteB.oper();
+        AbstractClass concreteA = new ConcreteClassA();
+        AbstractClass concreteB = new ConcreteClassB();
+    
+        concreteA.oper();
+        concreteB.oper();
       }
     }
-    ```
-  
+    
+  ```
+    
     * `接口实现`
     
     ```java
     //接口 主要定义抽象方法及模版方法
     public interface AbstractInterface{
-      	//模版方法，java 8 可以在接口定义default方法，但是实现类可以覆盖，不安全
-    		default void oper(){
-    			oper1();
-    			oper2();
-    			oper3();
-    		}
-    		
-      	//具体实现类需要实现,定义具体操作
-    		public void oper1();
-    		public void oper2();
-    		public void oper3();
+      //模版方法，java 8 可以在接口定义default方法，但是实现类可以覆盖，不安全
+      default void oper(){
+        oper1();
+        oper2();
+        oper3();
+      }
+    
+      //具体实现类需要实现,定义具体操作
+      public void oper1();
+      public void oper2();
+      public void oper3();
     }
     
     //实现类A
     public class ConcreteClassA implements AbstractInterface{
-      	@Override
-      	public void oper1(){
-          //...
-        }
-      
-      	@Override
-    		public void oper2(){
-          //...
-        }
-      
-      	@Override
-    		public void oper3(){
-          //...
-        }
+      @Override
+      public void oper1(){
+        //...
+      }
+    
+      @Override
+      public void oper2(){
+        //...
+      }
+    
+      @Override
+      public void oper3(){
+        //...
+      }
     }
     
     //实现类B
     public class ConcreteClassB implements AbstractInterface{
-      	@Override
-      	public void oper1(){
-          //...
-        }
-      
-      	@Override
-    		public void oper2(){
-          //...
-        }
-      
-      	@Override
-    		public void oper3(){
-          //...
-        }
+      @Override
+      public void oper1(){
+        //...
+      }
+    
+      @Override
+      public void oper2(){
+        //...
+      }
+    
+      @Override
+      public void oper3(){
+        //...
+      }
     }
     
     //调用	
     public class Client{
       public static void main(String args[]){
-        	AbstractInterface concreteA = new ConcreteClassA();
-        	AbstractInterface concreteB = new ConcreteClassB();
-        
-        	concreteA.oper();
-        	concreteB.oper();
+        AbstractInterface concreteA = new ConcreteClassA();
+        AbstractInterface concreteB = new ConcreteClassB();
+    
+        concreteA.oper();
+        concreteB.oper();
       }
     }
+    
     ```
   
 * 要点总结
@@ -368,37 +370,38 @@
   * 代码实现
 
     * `传统`
-    
+
     ```java
     public class ClassA{
       //根据不同策略做不同操作，当现有策略无法支持扩展时，需要添加新的策略类型及对应操作
       public void oper(int strategy){
-        	if (strategy == 0){
-            //...
-          }else if (strategy == 1){
-            //...
-          }else if (strategy == 2){
-            //...
-          }else if (strategy == 3){
-            //...
-          } //可能有无限变更...违背了开闭原则，开放扩展，封闭更改
-        	
-        	//...
+        if (strategy == 0){
+          //...
+        }else if (strategy == 1){
+          //...
+        }else if (strategy == 2){
+          //...
+        }else if (strategy == 3){
+          //...
+        } //可能有无限变更...违背了开闭原则，开放扩展，封闭更改
+    
+        //...
       }
     }
+    
     ```
 
     * `策略模式`
-    
+
     ```java
     //实际持有策略的使用者
     public class Content{
       private Strategy strategy;
-      
+    
       public Content(Strategy strategy){
         this.strategy = strategy;
       }
-      
+    
       //变化的地方
       public void contentMethod(){
         strategy.oper();
@@ -429,13 +432,14 @@
     //调用 
     public class Client{
       public static void main(String args[]){
-        	Content contentA = new Content(new StrategyA());
-        	Content contentB = new Content(new StrategyB());
-        
-        	contentA.contentMethod();
-       		contentA.contentMethod();
+        Content contentA = new Content(new StrategyA());
+        Content contentB = new Content(new StrategyB());
+    
+        contentA.contentMethod();
+        contentA.contentMethod();
       }
     }
+    
     ```
 
   * 要点总结
@@ -465,15 +469,15 @@
     ```java
     public class MainClass{
       private FeildClass feild1;
-      
+    
       // 加吧 :-(
-      
+    
       // 再加呢？滚。。。
-      
+    
       // 由于高层类FeildClass高度依赖于低层类State，违背了依赖倒置原则，这里需要添加一层抽象来隔离FeildClass 与 State，将二者的依赖关系逆转过来；这里FeildClass可以抽象为观察者，State可以抽象为被观察者；FeildClass中不变的是对State的操作和监听，所以观察者中只需要包含特定的监听处理就好，具体怎么样交给子类吧；而State被观察者，可能存在多种不同的表现形式，所以操作也会有些许不同。
-      
+    
       // 对feild1进行一定操作，但是需求临时变更，需要中feild1中对某类状态做处理监听？怎么办？常用手段在feild1中添加状态并对状态监听
-      
+    
       // 需求又变了。。。假设再监听一个状态呢？
       public void oper(){
         feild1.oper();
@@ -484,20 +488,20 @@
     public class FeildClass{
       // 该死需求变了，加吧
       private State state;
-      
+    
       // 需求又变了
       private OtherState otherState;
-      
+    
       public void oper(){
         // ...
-        
+    
         // 添加对新状态的相关操作吧
       }
-      
+    
       public void updateState(){
         // ... update state
       }
-      
+    
       public State getState(){
         return state;
       }
@@ -508,79 +512,81 @@
     }
     
     public class State{
-    	// ...随便干什么啦
+      // ...随便干什么啦
     }
+  
   ```
   
     * `模式实现`
   
     ```java
-    // 稳定部分 
-    
-    /**
+  // 稳定部分 
+  
+  /**
      * 观察者
      */
-    public interface Observer{
-      public void update(Subject subject);
-    }
-    
-    /**
+  public interface Observer{
+    public void update(Subject subject);
+  }
+  
+  /**
      * 被观察对象
      */
-    public class Subject{
-      List<Observer> observers = new ArrayList<>();
-      
-      void attach(Observer observer){
-        // ...
-      }
-      
-      void detach(Observer observer){
-        // ...
-      }
-      
-      void notify(){
-        for(Observer observer : observers){
-          observer.update(this);
-        }
+  public class Subject{
+    List<Observer> observers = new ArrayList<>();
+  
+    void attach(Observer observer){
+      // ...
+    }
+  
+    void detach(Observer observer){
+      // ...
+    }
+  
+    void notify(){
+      for(Observer observer : observers){
+        observer.update(this);
       }
     }
-    
-    //变化部分
-    
-    /**
+  }
+  
+  //变化部分
+  
+  /**
      * 实际观察者
      */
-    public class ConcreteObserver implements Observer{
-      public void update(Subject subject){
-        state = subject.getState();
-        // ... update state
-      }
+  public class ConcreteObserver implements Observer{
+    public void update(Subject subject){
+      state = subject.getState();
+      // ... update state
     }
-    
-    /**
+  }
+  
+  /**
      * 实际被观察对象
      */
-    public class ConcreteSubject extends Subject{
-      private Object state;
-      
-      public Object setState(Object state){
-         this.state = state;
-         notify();
-      }
-      
-      public Object getState(){
-        return state;
-      }
+  public class ConcreteSubject extends Subject{
+    private Object state;
+  
+    public Object setState(Object state){
+      this.state = state;
+      notify();
     }
-    
-    public class Client{
-      public static void main(String[] args){
-        Subject subject = new ConcreteSubject();
-        Observer observer = new ConcreteObserver();
-        subject.attach(observer);
-        subject.setState(new Object());
-    	}
+  
+    public Object getState(){
+      return state;
     }
+  }
+  
+  public class Client{
+    public static void main(String[] args){
+      Subject subject = new ConcreteSubject();
+      Observer observer = new ConcreteObserver();
+      subject.attach(observer);
+      subject.setState(new Object());
+    }
+  }
+  
     ```
   
 * 要点总结
@@ -688,11 +694,11 @@
   // 继承自Stream是为了继承规范统一的操作，组合Stream是为了应对不同类型的组合操作
   public class CryptoStream extends Stream {
     private Stream stream; // = ...各种Stream
-    
+  
     public CryptoStream(Stream stream) {
       this.stream = stream;
     }
-    
+  
     @override
     public void read(){
       // ... 加密操作
@@ -703,11 +709,11 @@
   //但是这样就会有很多子类都持有Stream，应该提一下
   public class DecoratorStream extends Stream {
     protected Stream stream;
-    
+  
     public DecoratorStream(Stream stream) {
       this.stream = stream;
     }
-    
+  
     @override
     public void read(){
       stream.read();
@@ -719,13 +725,14 @@
     public CryptoStream(Stream stream) {
       super(stream);
     }
-    
+  
     @override
     public void read(){
       // ... 加密操作
-    	super.read();
+      super.read();
     }
-}
+  }
+  
   ```
 
   * `模式`
@@ -744,11 +751,11 @@
   
   public class Decorator extends Component {
     protected Component component;
-    
+  
     public Decorator(Component component){
       this.component = component;
     }
-    
+  
     @Override
     public void operation(){
       // ...
@@ -759,7 +766,7 @@
     public ConcreateDecoratorA(Component component){
       super(component);
     }
-    
+  
     @Override
     public void operation(){
       // ...
@@ -771,13 +778,14 @@
     public ConcreateDecoratorB(Component component){
       super(component);
     }
-    
+  
     @Override
     public void operation(){
       // ...
-    	super.operation();
+      super.operation();
     }
-}
+  }
+  
   ```
 
 * 要点总结
@@ -809,7 +817,7 @@
       public abstract void login();
       public abstract void sendMessage();
       public abstract void sendPicture();
-      
+    
       public abstract void playSound();
       public abstract void drawShape();
       public abstract void writeText();
@@ -821,17 +829,17 @@
       public void playSound(){
         // ..
       }
-      
+    
       @Override
       public void drawShape(){
         // ..
       }
-      
+    
       @Override
       public void writeText(){
         // ..
       }
-      
+    
       @Override
       public void connect(){
         // ..
@@ -843,17 +851,17 @@
       public void playSound(){
         // ..
       }
-      
+    
       @Override
       public void drawShape(){
         // ..
       }
-      
+    
       @Override
       public void writeText(){
         // ..
       }
-      
+    
       @Override
       public void connect(){
         // ..
@@ -866,13 +874,13 @@
         connect();
         // ...
       }
-      
+    
       @Override
       public void sendMessage(){
         writeText();
         // ...
       }
-      
+    
       @Override
       public void sendPicture(){
         drawShape();
@@ -888,7 +896,7 @@
         connect();
         // ...
       }
-      
+    
       @Override
       public void sendMessage(){
         playSound();
@@ -896,7 +904,7 @@
         writeText();
         // ...
       }
-      
+    
       @Override
       public void sendPicture(){
         playSound();
@@ -912,13 +920,13 @@
         connect();
         // ...
       }
-      
+    
       @Override
       public void sendMessage(){
         writeText();
         // ...
       }
-      
+    
       @Override
       public void sendPicture(){
         drawShape();
@@ -934,7 +942,7 @@
         connect();
         // ...
       }
-      
+    
       @Override
       public void sendMessage(){
         playSound();
@@ -942,7 +950,7 @@
         writeText();
         // ...
       }
-      
+    
       @Override
       public void sendPicture(){
         playSound();
@@ -955,21 +963,21 @@
     //扩展后子类数目庞大，该用组合重构一下，提炼两个类
     public MessagerLite {
       private Messager messager;
-      
+    
       // ... constractor
-      
+    
       @Override
       public void login(){
         messager.connect();
         // ...
       }
-      
+    
       @Override
       public void sendMessage(){
         messager.writeText();
         // ...
       }
-      
+    
       @Override
       public void sendPicture(){
         messager.drawShape();
@@ -979,9 +987,9 @@
     
     public MessagerPerfact {
       private Messager messager;
-      
+    
       // ... constractor
-      
+    
       @Override
       public void login(){
         messager.playSound();
@@ -989,7 +997,7 @@
         messager.connect();
         // ...
       }
-      
+    
       @Override
       public void sendMessage(){
         messager.playSound();
@@ -997,7 +1005,7 @@
         messager.writeText();
         // ...
       }
-      
+    
       @Override
       public void sendPicture(){
         messager.playSound();
@@ -1023,7 +1031,7 @@
     }
     
     public abstract class MobileMessagerBase extends MessagerImp {
-    	// ...
+      // ...
     }
     
     public MessagerLite extends Messager {
@@ -1040,7 +1048,7 @@
     
     public abstract class Messager {
       private MessagerImp messagerImp;
-      
+    
       public abstract void login();
       public abstract void sendMessage();
       public abstract void sendPicture();
@@ -1054,7 +1062,7 @@
     }
     
     public abstract class MobileMessagerBase extends MessagerImp {
-    	// ...
+      // ...
     }
     
     public MessagerLite extends Messager {
@@ -1062,7 +1070,7 @@
     }
     
     public MessagerPerfact extends Messager {
-    	// ...
+      // ...
     }
     
     
@@ -1074,11 +1082,11 @@
     // 平台层抽象
     public abstract class Abstraction {
       protected Implementor implementor;
-      
+    
       public Abstraction(Implementor implementor){
         this.implementor = implementor;
       }
-      
+    
       public abstract void operation();
     }
     
@@ -1091,7 +1099,7 @@
       public RefinedAbstraction(Implementor implementor){
         super(implementor);
       }
-      
+    
       public void operation(){
         // ...
         implementor.operationImp();
@@ -1106,9 +1114,10 @@
     
     public class ConcreteImplementorB extends Implementor {
       public void operationImp(){
-          // ...
+        // ...
       }
     }
+    
     ```
 * 要点总结
   
@@ -1146,14 +1155,14 @@
 
   ```java
   public class MainFormClass{
-    
+  
     public void oper(){
       FileSplitter splitter = new FileSplitter();
       splitter.oper();
-      
+  
       ImgSplitter imgSplitter = new ImgSplitter();
       imgSplitter.oper();
-      
+  
       // 大量同类型处理，创建大量类
     }
   }
@@ -1181,14 +1190,14 @@
   public class ImgSplitter extends Splitter {}
   
   public class MainFormClass{
-    
+  
     public void oper(){
       Splitter splitter = new FileSplitter();
       splitter.oper();
-      
+  
       Splitter imgSplitter = new ImgSplitter();
       imgSplitter.oper();
-      
+  
       // 但创建时还是依赖于具体的类，还是依赖了具体类，怎么办？不用new还能咋办？有new就会依赖于具体类。用某个方法来return一个实例，达到运行时绑定，动态支持。
     }
   }
@@ -1208,11 +1217,11 @@
   }
   
   public class MainFormClass{
-    
+  
     public void oper(){
       Splitter imgSplitter = SplitterFactory.createSplitter();
       imgSplitter.oper();
-      
+  
       // 间接的new，但是如果其他的类呢，再创建一个方法来创建具体类。还是依赖具体类，工厂再提供一层抽象
     }
   }
@@ -1232,17 +1241,18 @@
   
   public class MainFormClass{
     SplitterFactory factory;
-    
+  
     // 将类的内部强依赖，抛到了调用客户端，这样MainFormClass可以达到最大的灵活度
     public MainFormClass(SplitterFactory factory){
       this.factory = factory;
     }
-    
-  	public void oper(){
+  
+    public void oper(){
       Splitter imgSplitter = factory.createSplitter();
-    	imgSplitter.oper();
+      imgSplitter.oper();
     }
   }
+  
   ```
 
   * `模式实现`
@@ -1259,11 +1269,12 @@
   public class ConcreteProduct extends Product {}
   
   public class ConcreteCretor implements creator {
-  	@Override
+    @Override
     public Product factoryMethod(){
-    	return new ConcreteProduct();
+      return new ConcreteProduct();
     }
   }
+  
   ```
 
 * 要点总结
@@ -1295,20 +1306,21 @@
     public static void mian(String[] args){
       Product1Factory product1Factory = new Product1Factory();
       Product1 product1 = product1Factory.create();
-      
+  
       Product2Factory product2Factory = new Product2Factory();
       Product2 product2 = product2Factory.create();
-      
-    	Product3Factory product3Factory = new Product3Factory();
+  
+      Product3Factory product3Factory = new Product3Factory();
       Product3 product3 = product3Factory.create();
-  }
+    }
   }
   
   //面对具有相关性的多个类型的对象创造，会有大量的工厂类，可不可以用一个工厂来生成不同的类，生产一组相关性组件
-  ```
-
-  - `模式实现`
-
+  
+```
+  
+- `模式实现`
+  
   ```java
   public abstract Product1 {}
   public abstract Product2 {}
@@ -1328,10 +1340,11 @@
     }
   
     @Override
-  	public Product2 createProduct2(){
+    public Product2 createProduct2(){
       return new ConcreteProduct2();
     }
   }
+  
   ```
 - 要点总结
   
@@ -1380,14 +1393,15 @@
       }
     
       @Override
-    	public abstract Splitter clone(){
-      	// clone
-    	}
+      public abstract Splitter clone(){
+        // clone
+      }
     }
     
     // 将工厂方法中产品和工厂合并
-    ```
-  
+    
+  ```
+    
     - `模式实现`
     
     ```java
@@ -1412,14 +1426,15 @@
     public class Client {
       public void oper(){
         // ... Prototype clone
-    	}
+      }
     }
     
     //这样能干嘛？什么时候用？也工厂方法有啥区别？
     
     //某些复杂结构类的初始化创建比较复杂，通过深度clone会比工厂方法更方便。深度clone即复制对象的值而非引用
-    ```
 
+  ```
+  
 - 要点总结
   
     - Prototype模式同样用于隔离类对象的`使用者`和`具体类型`（易变类）之间的耦合关系，它同样要求这些“`易变类`”拥有“`稳定的接口`”。
@@ -1448,16 +1463,16 @@
   public abstract class House {
     public void House() { //构造器中定义构建过程，子类初始化是会自动调用相应的方法，但这里构造太繁琐麻烦了
       buildPart1();
-      
+  
       for(int i = 0; i < 4; i ++){
         buildPart2();
       }
-      
+  
       buildPart3();
       buildPart4();
       buildPart5();
     }
-    
+  
     public abstract void buildPart1();
     public abstract void buildPart2();
     public abstract void buildPart3();
@@ -1471,16 +1486,16 @@
   public abstract class HouseBuilder{
     public final House build(){
       buildPart1();
-      
+  
       for(int i = 0; i < 4; i ++){
         buildPart2();
       }
-      
+  
       buildPart3();
       buildPart4();
       buildPart5();
     }
-    
+  
     public abstract void buildPart1();
     public abstract void buildPart2();
     public abstract void buildPart3();
@@ -1491,18 +1506,18 @@
   //每种类型的构造都需要继承HouseBuilder，但这样过度依赖于具体Builder，抽象具体的构建类
   public class HouseDirector {
     private HouseBuilder builder;
-    
+  
     public HouseDirector(HouseBuilder builder){ //通过构造器传入不同的Builder实现动态绑定
       this.builder = builder;
     }
-    
+  
     public House build(){
       builder.buildPart1();
-      
+  
       for(int i = 0; i < 4; i ++){
         builder.buildPart2();
       }
-      
+  
       builder.buildPart3();
       builder.buildPart4();
       builder.buildPart5();
@@ -1510,9 +1525,9 @@
   }
   
   public abstract class HouseBuilder{
-  	public abstract void buildPart1();
+    public abstract void buildPart1();
     public abstract void buildPart2();
-  	public abstract void buildPart3();
+    public abstract void buildPart3();
     public abstract void buildPart4();
     public abstract void buildPart5();
   }
@@ -1526,11 +1541,11 @@
   
   public class Director {
     private Builder builder;
-    
+  
     public Director(Builder builder){
       this.builder = builder;
     }
-    
+  
     public Product build(){
       builder.build1();
       builder.build2();
@@ -1548,24 +1563,25 @@
   
   public class ContreteBuilder implements Builder {
     private Product product;
-    
+  
     public void build1(){
       // ...
     }
-    
+  
     public void build2(){
       // ...
     }
-    
+  
     public void build3(){
       // ...
-  }
-    
-  public Product getResult(){
+    }
+  
+    public Product getResult(){
       // ... return a result by build*
       return product;
     }
-}
+  }
+  
   ```
 
 - 要点总结
@@ -1604,20 +1620,20 @@
    * 单例模式
    */
   public class Singleton {
-      public static void main(String[] args) throws InterruptedException {
-          Runnable r = () -> {
-              Singleton1 singleton = Singleton1.getInstance();
-  //            Singleton2 singleton = Singleton2.getInstance();
-              System.out.println("current = " + Thread.currentThread().getName() +
-                      ", singleton = " + singleton);
-          };
+    public static void main(String[] args) throws InterruptedException {
+      Runnable r = () -> {
+        Singleton1 singleton = Singleton1.getInstance();
+        //            Singleton2 singleton = Singleton2.getInstance();
+        System.out.println("current = " + Thread.currentThread().getName() +
+                           ", singleton = " + singleton);
+      };
   
-          for (int i = 0; i < 100000; i ++) {
-              Thread t = new Thread(r);
-              t.start();
-  //            Thread.sleep(1);
-          }
+      for (int i = 0; i < 100000; i ++) {
+        Thread t = new Thread(r);
+        t.start();
+        //            Thread.sleep(1);
       }
+    }
   }
   
   /**
@@ -1626,18 +1642,18 @@
    * 单线程适用，多线程条件下
    */
   class Singleton1{
-      private static Singleton1 singleton;
+    private static Singleton1 singleton;
   
-      private Singleton1(){}
+    private Singleton1(){}
   
-      public static Singleton1 getInstance(){
-          if (singleton == null){
-              singleton = new Singleton1();
-              return singleton;
-          }
-  
-          return singleton;
+    public static Singleton1 getInstance(){
+      if (singleton == null){
+        singleton = new Singleton1();
+        return singleton;
       }
+  
+      return singleton;
+    }
   }
   
   /**
@@ -1646,18 +1662,18 @@
    * 多线程适用，线程安全，效率低
    */
   class Singleton2{
-      private static Singleton2 singleton;
+    private static Singleton2 singleton;
   
-      private Singleton2(){}
+    private Singleton2(){}
   
-      public synchronized static Singleton2 getInstance(){
-          if (singleton == null){
-              singleton = new Singleton2();
-              return singleton;
-          }
-  
-          return singleton;
+    public synchronized static Singleton2 getInstance(){
+      if (singleton == null){
+        singleton = new Singleton2();
+        return singleton;
       }
+  
+      return singleton;
+    }
   }
   
   /**
@@ -1666,11 +1682,11 @@
    * 利用类加载初始化顺序
    */
   class Singleton3{
-      private static Singleton3 singleton = new Singleton3();
+    private static Singleton3 singleton = new Singleton3();
   
-      private Singleton3(){}
+    private Singleton3(){}
   
-      public static Singleton3 getInstance(){return singleton;}
+    public static Singleton3 getInstance(){return singleton;}
   }
   
   /**
@@ -1679,33 +1695,33 @@
    * 利用类加载初始化顺序
    */
   class Singleton4{
-      private static Singleton4 singleton;
+    private static Singleton4 singleton;
   
-      static {
-          singleton = new Singleton4();
-      }
+    static {
+      singleton = new Singleton4();
+    }
   
-      private Singleton4(){}
+    private Singleton4(){}
   
-      public static Singleton4 getInstance(){return singleton;}
+    public static Singleton4 getInstance(){return singleton;}
   }
   
   /**
    * 静态内部类，延迟加载
    */
   class Singleton5{
-      private static class SingletonHelper{
-          private static final Singleton5 INSTANCE = new Singleton5();
-      }
+    private static class SingletonHelper{
+      private static final Singleton5 INSTANCE = new Singleton5();
+    }
   
-      public static Singleton5 getInstance(){return SingletonHelper.INSTANCE;}
+    public static Singleton5 getInstance(){return SingletonHelper.INSTANCE;}
   }
   
   /**
    * 枚举
    */
   enum Singleton6{
-      INSTANCE;
+    INSTANCE;
   }
   
   /**
@@ -1713,41 +1729,43 @@
    * 指令序列：并不一定会按照编写顺序执行
    */
   class Singleton7{
-      private static volatile Singleton7 singleton;
+    private static volatile Singleton7 singleton;
   
-      private Singleton7(){}
+    private Singleton7(){}
   
-      public static Singleton7 getInstance(){
+    public static Singleton7 getInstance(){
+      if (singleton == null){
+        synchronized (Singleton7.class){
           if (singleton == null){
-              synchronized (Singleton7.class){
-                  if (singleton == null){
-                      singleton = new Singleton7();//加载类、校验类、分配内存、初始化静态成员、初始化标准模式值、调用构造器、返回引用地址，cpu中这些顺序可能重排序，可能分配内存后就返回内存地址，但对象并未初始化，并不能使用，这里需要编译器优化，java中volatitle关键字就有效的保证了不重排序优化
-                      return singleton;
-                }
-              }
+            singleton = new Singleton7();//加载类、校验类、分配内存、初始化静态成员、初始化标准模式值、调用构造器、返回引用地址，cpu中这些顺序可能重排序，可能分配内存后就返回内存地址，但对象并未初始化，并不能使用，这里需要编译器优化，java中volatitle关键字就有效的保证了不重排序优化
+            return singleton;
+          }
         }
-          return singleton;
       }
+      return singleton;
+    }
   }
   
   // 构造私有化，避免一些线程安全问题，利用锁、类加载机制
-  ```
-
-  - `模式实现`
-
+  
+```
+  
+- `模式实现`
+  
   ```java
   public class Singleton {
     private Singleton instance;
-    
+  
     private Singleton(){}
   
     public static getInstance(){
-    	if(instance == null){
+      if(instance == null){
         instance = new Singleton();
       }
       return instance;
-  	}
+    }
   }
+  
   ```
   
 - 要点总结
@@ -1779,21 +1797,22 @@
     public class Font{}
     
     public class FontFactory {
-    	Map<String, Font> fontPool = new HashMap<>();
-      
+      Map<String, Font> fontPool = new HashMap<>();
+    
       public Font getFont(String key){
         if(flyweights.containsKey(key)){
-        	return flyweights.get(key);
+          return flyweights.get(key);
         }else{
-        	// new flyweight
+          // new flyweight
           // flyweights.put(key, flyweight)
-        	// return flyweight
+          // return flyweight
         }
-    	}
+      }
     }
+    
     ```
     - `模式实现`
-    
+
     ```java
     public abstract class Flyweight{
       public abstract void oper();
@@ -1826,6 +1845,7 @@
         // ...
       }
     }
+    
     ```
 
   - 要点总结
@@ -1910,17 +1930,18 @@
   
   public Client {
     private Subject subject;
-    
+  
     public Client(Subject subject){
       this.subject = subject;
     }
-    
+  
     public void do(){
       // ...
       subject.request();
       // ...
     }
   }
+  
   ```
 
   - `模式实现`
@@ -1932,11 +1953,11 @@
   
   public class Proxy extends Subject{
     private Subject subject;
-    
+  
     public Proxy(Subject subject){
       this.subject = subject;
     }
-    
+  
     @Override
     public void request(){
       subject.request();
@@ -1949,6 +1970,7 @@
       // ... 对realSubject的间接访问
     }
   }
+  
   ```
 
 - 要点总结
@@ -1987,6 +2009,7 @@
   }
   
   // 怎么把遗留接口适用于新接口，而不改变遗留接口，添加中间/间接层匹配
+  
   ```
 
   - `模式实现 - 组合`
@@ -2005,16 +2028,17 @@
   //组合实现 更灵活
   public class Adapter extends Target{
     private Adaptee adaptee;
-    
+  
     public Adapter(Adaptee adaptee){
       this.adaptee = adaptee;
     }
-    
+  
     @Override
     public void request(){
       adaptee.specificRequest();
     }
   }
+  
   ```
 
   - `模式实现 - 继承`
@@ -2037,6 +2061,7 @@
       super.specificRequest();
     }
   }
+  
   ```
 
 - 要点总结
@@ -2107,7 +2132,7 @@
     
     ```java
     enum NetworkState {
-    Network_Open;
+      Network_Open;
       Network_Close;
       Network_Connect;
     }
@@ -2115,7 +2140,7 @@
     
     public class NetworkProcessor {
       private NetworkState state;
-      
+    
       public void oper1(){
         if(state == Network_Open){
           // ...
@@ -2128,7 +2153,7 @@
           state = Network_Open;
         }
       }
-      
+    
       public void oper1(){
         if(state == Network_Open){
           // ...
@@ -2146,11 +2171,11 @@
     //如果状态发生改变，则行为也会发生改变；有点像策略模式；但和策略又有些不同，策略提供指定算法操作，而状态的变更引起的操作怎么处理？针对每种状态提供对对应的操作，这样就扩展开放修改封闭了。
     public abstract class NetworkState{ 
       protected NetworkState nextState;
-      
+    
       public NetworkState(NetworkState nextState){
         this.nextState = nextState;
       }
-      
+    
       public abstract void oper1();
       public abstract void oper2();
       public abstract void oper2();
@@ -2158,27 +2183,27 @@
     
     public class OpenState extends NetworkState{
       private static NetworkState state;
-      
+    
       private OpenState(){
       }
-      
+    
       public static NetworkState getInstance(){
         if(state == null){
           state = new OpenState();
         }
         return state;
       }
-      
+    
       @Override
       public void oper1(){
         nextState = CloseState.getInstance();
       }
-      
+    
       @Override
       public void oper2(){
         nextState = ConnectState.getInstance();
       }
-      
+    
       @Override
       public void oper3(){
         nextState = OpenState.getInstance();
@@ -2187,27 +2212,27 @@
     
     public class CloseState extends NetworkState{
       private static NetworkState state;
-      
+    
       private CloseState(){
       }
-      
+    
       public static NetworkState getInstance(){
         if(state == null){
           state = new CloseState();
         }
         return state;
       }
-      
+    
       @Override
       public void oper1(){
         nextState = CloseState.getInstance();
       }
-      
+    
       @Override
       public void oper2(){
         nextState = ConnectState.getInstance();
       }
-      
+    
       @Override
       public void oper3(){
         nextState = OpenState.getInstance();
@@ -2216,27 +2241,27 @@
     
     public class ConnectState extends NetworkState{
       private static NetworkState state;
-      
+    
       private ConnectState(){
       }
-      
+    
       public static NetworkState getInstance(){
         if(state == null){
           state = new ConnectState();
         }
         return state;
       }
-      
+    
       @Override
       public void oper1(){
         nextState = CloseState.getInstance();
       }
-      
+    
       @Override
       public void oper2(){
         nextState = ConnectState.getInstance();
       }
-      
+    
       @Override
       public void oper3(){
         nextState = OpenState.getInstance();
@@ -2245,38 +2270,39 @@
     
     public class NetworkProcess{
       private NetworkState state;
-      
+    
       public NetworkProcess(NetworkState state){
         this.state = state;
       }
-      
+    
       public void oper1(){
         state.oper1();
         state = state.nextState;
       }
-      
+    
       public void oper2(){
         state.oper2();
         state = state.nextState;
       }
-      
+    
       public void oper3(){
         state.oper3();
         state = state.nextState;
       }
     } 
-    ```
-  
-    - `模式实现`
     
+  ```
+    
+  - `模式实现`
+      
     ```java
     public class Context{
       private State state;
-      
+    
       public Context(State state){
         this.state = state;
       }
-      
+    
       public void request(){
         state.handle();
       }
@@ -2297,7 +2323,8 @@
         // ...
       }
     }
-    ```
+  
+  ```
   
   - 要点总结
   
@@ -2332,30 +2359,30 @@
     ```java
     public class Memento{
       private String state;
-      
+    
       public Memento(String state){
         this.state = state;
       }
-      
+    
       public String getState{return state;}
-      
+    
       public void setState(String s){state = s;}
     }
     
     public class Originator{
       private String state;
-      
+    
       public Originator(){}
-      
+    
       public Memento createMemento(){
         Memento m = new Memento(state);
         return m;
       }
-      
+    
       public void setMemento(Memento m){
         state = m.getState();
       }
-      
+    
       public void updateState(String state){
         this.state = state;
       }
@@ -2372,7 +2399,8 @@
         originator.setMemento(memento)
       } 
     }
-    ```
+    
+  ```
   
   - 要点总结
   
@@ -2415,27 +2443,27 @@
     ```java
     public abstract class Component{
       public Component(){}
-    
+  
     public abstract void process();
   }
   
   public class Composite extends Component{
     private String name;
-    
+  
     private List<Component> elements;
-    
+  
     public Composite(String name){
       this.name = name;
     }
-    
+  
     public void add(Component element){
       elements.add(element);
     }
-    
+  
     public void remove(Component element){
       elements.remove(element);
     }
-    
+  
     @Override
     public void process(){
       for(Component e : elements){
@@ -2446,16 +2474,17 @@
   
   public class Leaf extends Component{
     private String name;
-    
+  
     public Leaf(String s){
       this.name = s;
     }
-    
+  
     @Override
     public void process(){
       // ... any
     }
   }
+  
   ```
   
   - 要点总结
@@ -2502,7 +2531,7 @@
   
   public class ConcreteAggregate<T> implements Aggregate{
     // ?
-    
+  
     public Iterator<T> createIterator(){
       return new ConcreteIterator(this);
     }
@@ -2510,15 +2539,16 @@
   
   public class ConcreteIterator<T> implements Iterator{
     private Aggregate<T> collections;
-    
+  
     public ConcreteIterator(Aggregate<T> collections){
       this.collections = collections;
     }
-    
+  
     // ...
   }
   
   //面向对象的多态调用，性能消耗大；迭代方向单一；
+  
   ```
   
   - 要点总结
@@ -2554,37 +2584,37 @@
     
     public class Request{
       private String desc;
-    
+  
     private RequestType req;
-    
+  
     public Request(String desc, RequestType req){
       this.desc = desc;
       this.req = req;
     }
-    
+  
     public RequestType getReq(){return req;}
-    
+  
     public String getDesc(){return desc;}
   }
   
   public abstract class ChainHandler{
     private ChainHandler nextChain;
-    
+  
     public ChainHandler(){}
-    
+  
     public void setRequestToNextHandler(Request req){
       if(nextChain != null){
         nextChain.handle(req);
       }
     }
-    
+  
     public abstract boolean canHandleRequest(Request req);
     public abstract void processRequest(Request req);
-    
+  
     public void setNextChain(ChainHandler next){
       nextChain = next;
     }
-    
+  
     public void handle(Request req){
       if(canHandleRequest(req)){
         processRequest(req);
@@ -2621,14 +2651,15 @@
       Handler1 h1 = new Handler1();
       Handler2 h2 = new Handler2();
       Handler1 h3 = new Handler1();
-      
+  
       h1.setNextChain(h2);
       h2.setNextChain(h3);
-      
+  
       REquest req = new Request("process task ...", RequestType.REQ_HANDLER#);
       h1.handle(req);
     }
   }
+  
   ```
   
   - `模式实现`
@@ -2636,7 +2667,7 @@
   ```java
   public abstract Handler{
     private Handler next;
-    
+  
     public abstract void handleRequest();
   }
   
@@ -2653,6 +2684,7 @@
       // ....
     }
   }
+  
   ```
   
   - 要点总结
@@ -2694,9 +2726,9 @@
   //行为对象
     public class ConcreteCommdand1 extends Command{
       private String arg;
-      
-    public ConcreteCommdand1(String arg){this.arg = arg;}
     
+    public ConcreteCommdand1(String arg){this.arg = arg;}
+  
     @Override
     public void execute(){
       // ...
@@ -2706,15 +2738,16 @@
   
   public class ConcreteCommdand2 extends Command{
     private String arg;
-    
+  
     public ConcreteCommdand2(String arg){this.arg = arg;}
-    
+  
     @Override
     public void execute(){
       // ...
       System.out.println("process 2");
     }
   }
+  
   ```
   
   - `模式实现`
@@ -2750,9 +2783,9 @@
     ```java
     public abstract class Element{
       public Element(){}
-    
+  
       public abstract void func1();
-    
+  
     }
     
     public class ElementA extends Element{
@@ -2770,6 +2803,7 @@
   }
   
   //如果需求变更，基类添加新行为，所有子类都要新增新行为的支持；开闭原则
+  
   ```
   
   - `模式实现`
@@ -2777,7 +2811,7 @@
   ```java
   public abstract class Visitor{
     public Visitor(){}
-    
+  
     public abstract visitElementA(ElementA element);
     public abstract visitElementB(ElementB element);
   }
@@ -2810,7 +2844,7 @@
     public visitElementA(ElementA element){
       // ...
     }
-    
+  
     @Override
     public visitElementB(ElementB element){
       // ...
@@ -2822,7 +2856,7 @@
     public visitElementA(ElementA element){
       // ...
     }
-    
+  
     @Override
     public visitElementB(ElementB element){
       // ...
@@ -2834,11 +2868,12 @@
       Visitor2 visitor = new Visitor2();
       ElementB element = new ElementB();
       element.accept(visitor);// double dispatch
-      
+  
       // first: accept; second: visitor.visitElement*()
     }
   }
   //Visitor稳定的前提，必须保证Element子类个数确定！但实际环境无法满足，如果Element添加子类，则Visitor基类及所有子类都要修改，还是违反了开闭原则！特别容易打破！
+  
   ```
   
   - 要点总结
@@ -2873,104 +2908,105 @@
     
     ```java
     abstract class Expression{
-        public Expression(){}
+      public Expression(){}
   
-        public abstract int interpreter(Map<Character, Integer> var);
+      public abstract int interpreter(Map<Character, Integer> var);
   }
     
     //变量表达式
     class VarExpression extends Expression{
-      private char key;
+    private char key;
   
-      public VarExpression(char key){
-          this.key = key;
-      }
+    public VarExpression(char key){
+      this.key = key;
+    }
   
-      @Override
-      public int interpreter(Map<Character, Integer> var){
-          return var.get(key);
-      }
+    @Override
+    public int interpreter(Map<Character, Integer> var){
+      return var.get(key);
+    }
   }
   
   //符号表达式
   abstract class SymbolExpression extends Expression{
-      protected Expression left;
-      protected Expression right;
+    protected Expression left;
+    protected Expression right;
   
-      public SymbolExpression(Expression left, Expression right){
-          this.left = left;
-          this.right = right;
-      }
+    public SymbolExpression(Expression left, Expression right){
+      this.left = left;
+      this.right = right;
+    }
   }
   
   //加法运算
   class AddExpression extends SymbolExpression{
-      public AddExpression(Expression left, Expression right){
-          super(left, right);
-      }
+    public AddExpression(Expression left, Expression right){
+      super(left, right);
+    }
   
-      @Override
-      public int interpreter(Map<Character, Integer> var){
-          return left.interpreter(var) + right.interpreter(var);
-      }
+    @Override
+    public int interpreter(Map<Character, Integer> var){
+      return left.interpreter(var) + right.interpreter(var);
+    }
   }
   
   //减法运算
   class SubExpression extends SymbolExpression{
-      public SubExpression(Expression left, Expression right){
-          super(left, right);
-      }
+    public SubExpression(Expression left, Expression right){
+      super(left, right);
+    }
   
-      @Override
-      public int interpreter(Map<Character, Integer> var){
-          return left.interpreter(var) - right.interpreter(var);
-      }
+    @Override
+    public int interpreter(Map<Character, Integer> var){
+      return left.interpreter(var) - right.interpreter(var);
+    }
   }
   
   class ExpressionAnalyse{
-      public static Expression analyse(String expStr){
-          Stack<Expression> expStack = new Stack();
+    public static Expression analyse(String expStr){
+      Stack<Expression> expStack = new Stack();
   
-          Expression left = null;
-          Expression right = null;
+      Expression left = null;
+      Expression right = null;
   
-          for(int i = 0; i < expStr.length(); i ++){
-              char[] exps = expStr.toCharArray();
-              switch(exps[i]){
-                  case '+' :
-                      left = expStack.peek();
-                      right = new VarExpression(exps[++i]);
-                      expStack.push(new AddExpression(left, right));
-                      break;
-                  case '-' :
-                      left = expStack.peek();
-                      right = new VarExpression(exps[++i]);
-                      expStack.push(new SubExpression(left, right));
-                      break;
-                  default:
-                      expStack.push(new VarExpression(exps[i]));
-              }
-          }
-  
-          Expression expression = expStack.peek();
-          return expression;
+      for(int i = 0; i < expStr.length(); i ++){
+        char[] exps = expStr.toCharArray();
+        switch(exps[i]){
+          case '+' :
+            left = expStack.peek();
+            right = new VarExpression(exps[++i]);
+            expStack.push(new AddExpression(left, right));
+            break;
+          case '-' :
+            left = expStack.peek();
+            right = new VarExpression(exps[++i]);
+            expStack.push(new SubExpression(left, right));
+            break;
+          default:
+            expStack.push(new VarExpression(exps[i]));
+        }
       }
+  
+      Expression expression = expStack.peek();
+      return expression;
+    }
   }
   
   public class Client{
-      public static void main(String[] args){
-          String expStr = "a+b-c+d";
-          Map<Character, Integer> var = new HashMap();
-          var.put('a', 5);
-          var.put('b', 2);
-          var.put('c', 1);
-          var.put('d', 8);
+    public static void main(String[] args){
+      String expStr = "a+b-c+d";
+      Map<Character, Integer> var = new HashMap();
+      var.put('a', 5);
+      var.put('b', 2);
+      var.put('c', 1);
+      var.put('d', 8);
   
-          Expression expression = ExpressionAnalyse.analyse(expStr);
-          int result = expression.interpreter(var);
-          System.out.println(result);
-      }
+      Expression expression = ExpressionAnalyse.analyse(expStr);
+      int result = expression.interpreter(var);
+      System.out.println(result);
+    }
   }
+  
   ```
   
   - `模式实现`
@@ -3004,12 +3040,13 @@
       Context context = new Context();
       AbstractExpression expression = new TerminalExpression();
       expression.interpret(context);
-      
+  
       expression = new NonterminalExpression();
       expression.interpret(context);
-      
+  
     }
   }
+  
   ```
   
   - 要点总结
