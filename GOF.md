@@ -133,7 +133,7 @@
 
 ```markdown
 	定义一个操作中的算法的骨架（`稳定`），而将一些步骤延迟（`变化`）到子类中；Template Method使得子类可以不改变（`复用`）一个算法的结构即可重定义（override重写）该算法的某些特定步骤；模版方法稳定中包含变化；适用于流程固定，但部分细节可能不同。
-																																	---<<设计模式>> GOF
+																																					---<<设计模式>> GOF
 ```
 
 * UML
@@ -281,69 +281,69 @@
   
     * `接口实现`
     
-      ```java
-      //接口 主要定义抽象方法及模版方法
-      public interface AbstractInterface{
-        	//模版方法，java 8 可以在接口定义default方法，但是实现类可以覆盖，不安全
-      		default void oper(){
-      			oper1();
-      			oper2();
-      			oper3();
-      		}
-      		
-        	//具体实现类需要实现,定义具体操作
-      		public void oper1();
-      		public void oper2();
-      		public void oper3();
-      }
-      
-      //实现类A
-      public class ConcreteClassA implements AbstractInterface{
-        	@Override
-        	public void oper1(){
-            //...
-          }
-        
-        	@Override
-      		public void oper2(){
-            //...
-          }
-        
-        	@Override
-      		public void oper3(){
-            //...
-          }
-      }
-      
-      //实现类B
-      public class ConcreteClassB implements AbstractInterface{
-        	@Override
-        	public void oper1(){
-            //...
-          }
-        
-        	@Override
-      		public void oper2(){
-            //...
-          }
-        
-        	@Override
-      		public void oper3(){
-            //...
-          }
-      }
-      
-      //调用	
-      public class Client{
-        public static void main(String args[]){
-          	AbstractInterface concreteA = new ConcreteClassA();
-          	AbstractInterface concreteB = new ConcreteClassB();
-          
-          	concreteA.oper();
-          	concreteB.oper();
+    ```java
+    //接口 主要定义抽象方法及模版方法
+    public interface AbstractInterface{
+      	//模版方法，java 8 可以在接口定义default方法，但是实现类可以覆盖，不安全
+    		default void oper(){
+    			oper1();
+    			oper2();
+    			oper3();
+    		}
+    		
+      	//具体实现类需要实现,定义具体操作
+    		public void oper1();
+    		public void oper2();
+    		public void oper3();
+    }
+    
+    //实现类A
+    public class ConcreteClassA implements AbstractInterface{
+      	@Override
+      	public void oper1(){
+          //...
         }
+      
+      	@Override
+    		public void oper2(){
+          //...
+        }
+      
+      	@Override
+    		public void oper3(){
+          //...
+        }
+    }
+    
+    //实现类B
+    public class ConcreteClassB implements AbstractInterface{
+      	@Override
+      	public void oper1(){
+          //...
+        }
+      
+      	@Override
+    		public void oper2(){
+          //...
+        }
+      
+      	@Override
+    		public void oper3(){
+          //...
+        }
+    }
+    
+    //调用	
+    public class Client{
+      public static void main(String args[]){
+        	AbstractInterface concreteA = new ConcreteClassA();
+        	AbstractInterface concreteB = new ConcreteClassB();
+        
+        	concreteA.oper();
+        	concreteB.oper();
       }
-      ```
+    }
+    ```
   
 * 要点总结
 
@@ -355,7 +355,7 @@
 
   ```markdown
   定义一系列`算法`,把他们一个个封装起来，并且使它们可互相替换（`变化`）。该模式使得算法可独立于使用它的客户程序（`稳定`）而变化（`扩展`，子类化）。
-																																		 ---<<设计模式>> GOF
+																																		 			---<<设计模式>> GOF
   ```
 
   * UML
@@ -448,7 +448,7 @@
 
   ```markdown
 	定义对象间的一种一对多（`变化`）的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都能得到通知并自动更新。
-  																																			---<<设计模式>> GOF
+  																																				---<<设计模式>> GOF
   ```
 
 * UML
@@ -600,7 +600,7 @@
 
 ```markdown
  		动态（`组合`）地给一个对象增加一些额外的职责。就增加功能而言，Decorator模式比生成子类（`继承`）更为灵活（消除重复代码&减少子类个数）。
-																																			---<<设计模式>> GOF
+																																					---<<设计模式>> GOF
 ```
 
   * UML
@@ -789,7 +789,7 @@
 
 ```markdown
 	将抽象部分（`业务功能`）与实现部分（`平台实现`）分离，使它们都可以独立的变化。
-																																			---<<设计模式>> GOF
+																																					---<<设计模式>> GOF
 ```
 
 
@@ -1130,7 +1130,7 @@
 
 ```markdown
 	定义一个用于`创建对象`的`接口`，让子类决定实例化哪一个类。Factory Method使得一个类的实例话延迟（目的：`解耦`，手段：`接口`函数）。
-																																			---<<设计模式>> GOF
+																																					---<<设计模式>> GOF
 ```
 
 * UML
@@ -1276,7 +1276,7 @@
 
 ```markdown
 	提供一个`接口`，让该接口负责创建`一系列`“`相关`或者`相互依赖`的对象”，无需指定它们具体的类。
-																																			---<<设计模式>> GOF
+																																					---<<设计模式>> GOF
 ```
 
 - UML
@@ -1343,6 +1343,7 @@
 
 ```markdown
   使用`原型实例`指定创建对象的种类，然后通过`拷贝`这些原型来创建新的对象。
+  																																				---<<设计模式>> GOF
 ```
 
   - UML
@@ -1429,7 +1430,7 @@
 
 ```markdown
 	将一个复杂对象的`构建`与其`表示`相分离，使得同样的构建过程（稳定）可以创建不同的表示（变化）。
-  																																			---<<设计模式>> GOF
+  																																				---<<设计模式>> GOF
 ```
 
 - UML
@@ -1583,7 +1584,7 @@
 
   ```markdown
 	保证一个类仅有一个实例，并提供一个该实例的全局访问点。
-   																																			---<<设计模式>> GOF
+   																																				---<<设计模式>> GOF
   ```
 
 - UML
@@ -1758,7 +1759,7 @@
 
 ```markdown
 	运用共享技术有效地支持大量细粒度的对象。 
-																																			---<<设计模式>> GOF
+																																					---<<设计模式>> GOF
 ```
 
   - UML
