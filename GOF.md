@@ -2085,14 +2085,14 @@
 - 典型模式
     - State
     - Memento
-  
+
 #### State
-  
+
   ```markdown
   	允许一个对象在其内部状态改变时改变它的行为。从而使对象看起来似乎修改了其行为。
   																																			---<<设计模式>> GOF
   ```
-  
+
   - UML
   
   - 动机
@@ -2103,7 +2103,7 @@
   - 代码实现
   
     - `传统`
-  
+    
     ```java
     enum NetworkState {
     Network_Open;
@@ -2267,7 +2267,7 @@
     ```
   
     - `模式实现`
-  
+    
     ```java
     public class Context{
       private State state;
@@ -2303,14 +2303,14 @@
     - State模式将所有与一个特定状态相关的行为都放入一个State的子类对象中，在对象状态切换时，切换相应的对象；但同时维持State的接口，这样实现了具体操作与状态转换间的解耦。
     - 为不同的状态引入不同的对象使得状态转换变得更加明确，而且可以保证不会出现状态不一致的情况，因为转换是原子性的-----即要么彻底转换过来，要么不转换。
     - 如果State对象没有实例变量，那么各个上下文可以共享同一个State对象，从而节省对象开销。
-  
+
   #### Memento
-  
+
   ```markdown
   	在不破坏`封装性`的前提下，捕获一个对象的`内部状态`，并在该对象之外保持这个状态。这样以后就可以将该对象恢复到原先保存的状态。
   																																			---<<设计模式>> GOF
   ```
-  
+
   - UML
   
   - 动机
@@ -2321,13 +2321,13 @@
   - 代码实现
   
     - `传统`
-  
+    
     ```java
     
     ```
   
     - `模式实现`
-  
+    
     ```java
     public class Memento{
       private String state;
@@ -2378,37 +2378,686 @@
     - 备忘录（Memento）存储原发器（Originator）对象的内部状态，在需要时恢复原发器状态。
     - Memento模式的核心是信息隐藏，即Originator需要向外界隐藏信息，保持其封装性。但同时又需要将状态保持到外界（Memento）。
     - 由于现代语言运行时（如C#、Java等）都具有相当的对象序列化支持，因此往往采用效率较高、又较容易正确实现的序列化方案来实现Memento模式。
-  
-  ### ****
-  
-  - ...。
+
+  ### 数据结构
+
+  - 常常有一些组件在内部具有特定的`数据结构`，如果让客户程序依赖这些特定的数据结构，将极大地破坏组件的复用。这时候，将这些特定数据结构封装在内部，在外部提供统一的接口，来实现与特定数据结构无关的访问，是一种行之有效的解决方案。
   - 典型模式
-    - ...
-  
-  #### #####
-  
+    - Composite
+    - Iterator
+    - Chain of Resposibility
+
+  #### Composite
+
   ```markdown
-  
+	将对象组合成`树形结构`以表示“部分-整体”的层次结构。Composite使得用户对单个对象和组合对象的使用具有`一致性`（稳定）。
+																																					---<<设计模式>> GOF
   ```
-  
+
   - UML
   
   - 动机
   
+    - 在软件某些情况下，`客户代码`过多地依赖于对象`容器`复杂的`内部实现结构`，对象容器内部实现结构（而非抽象接口）的变化将引起客户代码的频繁变化，带来了代码的维护性、扩展性等弊端。 
+    - 如何将“客户代码与复杂的对象容器结构”解耦？让对象容器自己来实现自身的复杂结构，从而使得客户代码就像处理简单对象一样来处理复杂的对象容器？
+  
   - 代码实现
   
     - `传统`
-  
+    
     ```java
     
     ```
   
     - `模式实现`
+    
+    ```java
+    public abstract class Component{
+      public Component(){}
+    
+    public abstract void process();
+  }
   
+  public class Composite extends Component{
+    private String name;
+    
+    private List<Component> elements;
+    
+    public Composite(String name){
+      this.name = name;
+    }
+    
+    public void add(Component element){
+      elements.add(element);
+    }
+    
+    public void remove(Component element){
+      elements.remove(element);
+    }
+    
+    @Override
+    public void process(){
+      for(Component e : elements){
+        e.process(); // 多态调用   
+      }
+    }
+  }
+  
+  public class Leaf extends Component{
+    private String name;
+    
+    public Leaf(String s){
+      this.name = s;
+    }
+    
+    @Override
+    public void process(){
+      // ... any
+    }
+  }
+  ```
+  
+  - 要点总结
+
+      - Composite模式采用树形结构来实现普遍存在的对象容器，从而将“`一对多`”的关系转化为“`一对一`”的关系，使得客户代码可以一致的（复用）处理对象和对象容器，无需关心处理的是单个的对象，还是组合的对象容器。
+      - 将“客户代码与复杂的对象容器结构”解耦是Composite的核心思想，解耦之后，客户代码将与纯粹的抽象接口------而非对象容器的内部实现结构------发生依赖，从而更能“应对变化”。
+      - Composite模式在具体实现中，可以让父对象中的字对象反向追溯；如果父对象有频繁的遍历需求，可使用缓存技巧来改善效率。
+
+  #### Iterator
+
+  ```markdown
+	提供一种方法`顺序访问`一个`聚合对象`中的各个元素，而又`不暴露`（稳定/隔离变化）该对象的内部表示。
+																																					---<<设计模式>> GOF
+  ```
+
+  - UML
+  
+  - 动机
+  
+    - 在软件构建过程中，`集合对象`内部结构常常发生变化各异。但对于这些集合对象，我们希望在不暴露其内部结构的同时，可以让外部客户代码透明的访问其中包含的元素。同时这种“透明遍历”也为“同一种算法在多种集合对象上进行操作“提供了可能。
+    - 使用面向对象技术将这种遍历机制抽象为”迭代器对象”为“应对变化中的集合对象”提供了一种优雅的方式。
+  
+  - 代码实现
+  
+    - `传统`
+    
     ```java
     
     ```
   
-  - 要点总结
+    - `模式实现`
+    
+    ```java
+    public interface Iterator<T>{
+      public T first();
+    public T next();
+    public boolean isDone();
+    public T currentItem();
+  }
   
+  public interface Aggregate<T>{
+    public Iterator<T> createIterator();
+  }
+  
+  public class ConcreteAggregate<T> implements Aggregate{
+    // ?
+    
+    public Iterator<T> createIterator(){
+      return new ConcreteIterator(this);
+    }
+  }
+  
+  public class ConcreteIterator<T> implements Iterator{
+    private Aggregate<T> collections;
+    
+    public ConcreteIterator(Aggregate<T> collections){
+      this.collections = collections;
+    }
+    
+    // ...
+  }
+  
+  //面向对象的多态调用，性能消耗大；迭代方向单一；
+  ```
+  
+  - 要点总结
+
+      - 迭代抽象：访问一个聚合对象的内容而无需暴露它的内部表示。
+      - 迭代多态：为遍历不同的集合结构题狗一个统一的接口，从而支持同样的算法在不同的集合结构上进行操作。
+      - 迭代器的健壮性考虑：遍历的同时更改迭代器所在的集合结构，会导致问题。
+
+  #### Chain of Resposibility
+
+  ```markdown
+	使`多个对象`都`有机会`处理请求，从而避免请求的发送者和接受者之间的耦合关系。将这些`对象连成一条链`，并沿着这条链`传递请求`，直到有一个对象处理它为止。
+																																					---<<设计模式>> GOF
+  ```
+
+  - UML
+  
+  - 动机
+  
+    - 在软件构建过程中，`一个请求`可能被`多个对象`处理，但是`每个请求`在`运行时`只能有`一个接受者`，如果显示指定，将必不可少地带来请求发送者与接受者的紧耦合。
+    - 如何使请求的发送者不需要指定具体的接受者？让请求的接受者自己者运行时决定来处理请求，从而使两者解耦。
+  
+  - 代码实现
+  
+    - `传统`
+    
+    ```java
+    enum RequestType{
+      REQ_HANDLER1;
+    REQ_HANDLER2;
+      REQ_HANDLER3;
+  }
+    
+    public class Request{
+      private String desc;
+    
+    private RequestType req;
+    
+    public Request(String desc, RequestType req){
+      this.desc = desc;
+      this.req = req;
+    }
+    
+    public RequestType getReq(){return req;}
+    
+    public String getDesc(){return desc;}
+  }
+  
+  public abstract class ChainHandler{
+    private ChainHandler nextChain;
+    
+    public ChainHandler(){}
+    
+    public void setRequestToNextHandler(Request req){
+      if(nextChain != null){
+        nextChain.handle(req);
+      }
+    }
+    
+    public abstract boolean canHandleRequest(Request req);
+    public abstract void processRequest(Request req);
+    
+    public void setNextChain(ChainHandler next){
+      nextChain = next;
+    }
+    
+    public void handle(Request req){
+      if(canHandleRequest(req)){
+        processRequest(req);
+      }else{
+        setRequestToNextHandler(req);
+      }
+    }
+  }
+  
+  public class Handler1 extends ChainHandler{
+    @Override
+    public boolean canHandleRequest(Request req){
+      // ...
+    }
+    @Override
+    public void processRequest(Request req){
+      // ...
+    }
+  }
+  
+  public class Handler2 extends ChainHandler{
+    @Override
+    public boolean canHandleRequest(Request req){
+      // ...
+    }
+    @Override
+    public void processRequest(Request req){
+      // ...
+    }
+  }
+  
+  public class Client{
+    public static void main(String[] args){
+      Handler1 h1 = new Handler1();
+      Handler2 h2 = new Handler2();
+      Handler1 h3 = new Handler1();
+      
+      h1.setNextChain(h2);
+      h2.setNextChain(h3);
+      
+      REquest req = new Request("process task ...", RequestType.REQ_HANDLER#);
+      h1.handle(req);
+    }
+  }
+  ```
+  
+  - `模式实现`
+    
+  ```java
+  public abstract Handler{
+    private Handler next;
+    
+    public abstract void handleRequest();
+  }
+  
+  public ConcreteHandler1 extends handler{
+    @Override
+    public void handleRequest(){
+      // ....
+    }
+  }
+  
+  public ConcreteHandler2 extends handler{
+    @Override
+    public void handleRequest(){
+      // ....
+    }
+  }
+  ```
+  
+  - 要点总结
+
+      - Chain of Responsibility模式的应用场合在于“一个请求可能有多个接受者，但是最后真正的接受者只有一个”，这时候请求发送者与接受者的耦合有可能出现“变化脆弱”的症状，职责链的目的就是将二者解耦，从而更好地应对变化。
+      - 应用了Chain of Responsibility模式后，对象的`职责分派`将更具灵活性。我们可以在`运行时动态`添加/修改请求的处理职责。
+      - 如果请求传递到职责链的末尾仍得不到处理，应该有一个合理的缺省机制。这也是每个接受对象的责任，而不是发出请求的对象的责任。
+
+  ### 行为变化
+
+  - 在组件的构建过程中，组件`行为的变化`经常导致组件本身剧烈的变化。“行为变化”模式将组件的行为和组件本身进行解耦，从而支持组件行为的变化，实现两者之间的松耦合。
+  - 典型模式
+    - Command
+    - Vistor
+
+  #### Command
+
+  ```markdown
+	将一个请求（行为）`封装为一个对象`，从而使你可用不同的请求对客户进行参数化；对请求排队或记录请求日志，以及支持可撤销对操作。  
+																																					---<<设计模式>> GOF
+  ```
+
+  - UML
+  
+  - 动机
+  
+    - 在软件构建过程中，“行为请求者”与“行为实现者“通常呈现一种”紧耦合“。但在某些场合---比如需要对行为进行“记录、撤销/重（undo/redo）、事务”等处理，这种无法抵御变化的紧耦合是不合适的。
+    - 在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，可以实现二者之间的松耦合。
+  
+  - 代码实现
+  
+    - `传统`
+    
+    ```java
+    public abstract class Command{
+      public abstract void execute();
+  }
+    
+  //行为对象
+    public class ConcreteCommdand1 extends Command{
+      private String arg;
+      
+    public ConcreteCommdand1(String arg){this.arg = arg;}
+    
+    @Override
+    public void execute(){
+      // ...
+      System.out.println("process 1");
+    }
+  }
+  
+  public class ConcreteCommdand2 extends Command{
+    private String arg;
+    
+    public ConcreteCommdand2(String arg){this.arg = arg;}
+    
+    @Override
+    public void execute(){
+      // ...
+      System.out.println("process 2");
+    }
+  }
+  ```
+  
+  - `模式实现`
+    
+  ```java
+  
+  ```
+  
+  - 要点总结
+
+      - Command模式的根本目的在于将“行为请求者”与“行为实现者”解耦，在面向对象语言中，常见的实现手段是“将行为抽象为对象”。
+      - 实现Command接口的具体命令对象ConcreteCommand有时候根据需要可能会保存一些额外的状态信息。通过使用Composite模式，可以将多个“命令”封装为一个“复合命令”MacroCommand。
+      - Command模式与C++中的函数对象有些类似。但两者定义行为接口的规范有所区别；Command以面向对象中的“接口-实现”来定义行为接口规范，更严格，但有性能损失；C++函数对象以函数签名来定义行为接口规范，更灵活，性能更高。
+
+  #### Vistor
+
+  ```markdown
+	表示一个作用于某个对象结构中的各元素的操作。使得可以中不改变（稳定）个元素的类的前提下定义（扩展）作用于这些元素的新操作（变化）。  
+																																					---<<设计模式>> GOF
+  ```
+
+  - UML
+  
+  - 动机
+  
+    - 在软件构建过程中，由于`需求`的`改变`，某些`类层次`结构中常常需要`增加新的行为`（方法），如果直接在`基类`中做这样的`更改`，将会给`子类`带来很`繁重`的`变更负担`，甚至破坏原有设计。
+    - 如何在不更改类层次结构的前提下，在运行时根据需要透明地为类层次结构上的各个类动态添加新的操作，从而避免上述问题？
+  
+  - 代码实现
+  
+    - `传统`
+    
+    ```java
+    public abstract class Element{
+      public Element(){}
+    
+      public abstract void func1();
+    
+    }
+    
+    public class ElementA extends Element{
+    @Override
+    public void func1(){
+      // ...
+    }
+  }
+  
+  public class ElementB extends Element{
+    @Override
+    public void func1(){
+      // ...
+    }
+  }
+  
+  //如果需求变更，基类添加新行为，所有子类都要新增新行为的支持；开闭原则
+  ```
+  
+  - `模式实现`
+    
+  ```java
+  public abstract class Visitor{
+    public Visitor(){}
+    
+    public abstract visitElementA(ElementA element);
+    public abstract visitElementB(ElementB element);
+  }
+  
+  public abstract class Element{
+    public Element(){}
+    //通过组合剥离变化
+    public abstract void accept(Visitor visitor); // 第一次多态辨析
+  }
+  
+  public class ElementA extends Element{
+    @Override
+    public void accept(Visitor visitor){
+      // ...
+      visitor.visitElementA(this);
+    }
+  }
+  
+  public class ElementB extends Element{
+    @Override
+    public void accept(Visitor visitor){
+      // ...
+      visitor.visitElementB(this);// 第二次多态辨析
+    }
+  }
+  
+  // 新需求来了
+  public class Visitor1 extends Visitor{
+    @Override
+    public visitElementA(ElementA element){
+      // ...
+    }
+    
+    @Override
+    public visitElementB(ElementB element){
+      // ...
+    }
+  }
+  
+  public class Visitor2 extends Visitor{
+    @Override
+    public visitElementA(ElementA element){
+      // ...
+    }
+    
+    @Override
+    public visitElementB(ElementB element){
+      // ...
+    }
+  }
+  
+  public class Client{
+    public static void main(String[] args){
+      Visitor2 visitor = new Visitor2();
+      ElementB element = new ElementB();
+      element.accept(visitor);// double dispatch
+      
+      // first: accept; second: visitor.visitElement*()
+    }
+  }
+  //Visitor稳定的前提，必须保证Element子类个数确定！但实际环境无法满足，如果Element添加子类，则Visitor基类及所有子类都要修改，还是违反了开闭原则！特别容易打破！
+  ```
+  
+  - 要点总结
+
+      - Visitor模式通过所谓的双重分发（double dispatch）来实现在不更改（不添加新的操作-编译时）Element类层次结构的前提下，在运行时透明地为类层次结构上的各个类动态添加新的操作（支持变化）。
+      - 所谓的双重分发即Visitor模式中间包括类两个多态分发（注意其中的多态机制）：第一个为accept方法的多态辨析；第二个位visitElementX方法的多态辨析。
+      - Visitor模式的最大缺点在于扩展类层次结构（增添新的Element子类），会导致Visitor类的改变。因此Visitor模式适用于“Element类层次结构稳定，而其中的操作却经常面临频繁改动“。
+
+  ### 领域
+
+  - 在特定领域中，某些`变化`虽然`频繁`，但可以`抽象`为某种`规则`。这时候，结合`特定领域`，将问题抽象为`语法规则`，从而给出该领域下的一般性解决方案。
+  - 典型模式
+    - Interpreter
+
+  #### Interpreter
+
+  ```markdown
+	给定一个语言，定义它的文法的一种表示，并定义一种解释器，这个解释器使用该表示来解释语言中的句子。
+																																					---<<设计模式>> GOF
+  ```
+
+  - UML
+  
+  - 动机
+  
+    - 在软件构建过程中，如果某一特定领域的问题比较复杂，类似的`结构`不断`重复`出现，如果使用普通的编程方式来实现将面临非常频繁的变化。
+    - 在这种情况下，将特定领域的问题表达为某种语法规则下的句子，然后构建一个解释器来解释这样的句子，从而达到解决问题的目的。
+  
+  - 代码实现
+  
+    - `传统`
+    
+    ```java
+    abstract class Expression{
+        public Expression(){}
+  
+        public abstract int interpreter(Map<Character, Integer> var);
+  }
+    
+    //变量表达式
+    class VarExpression extends Expression{
+      private char key;
+  
+      public VarExpression(char key){
+          this.key = key;
+      }
+  
+      @Override
+      public int interpreter(Map<Character, Integer> var){
+          return var.get(key);
+      }
+  }
+  
+  //符号表达式
+  abstract class SymbolExpression extends Expression{
+      protected Expression left;
+      protected Expression right;
+  
+      public SymbolExpression(Expression left, Expression right){
+          this.left = left;
+          this.right = right;
+      }
+  }
+  
+  //加法运算
+  class AddExpression extends SymbolExpression{
+      public AddExpression(Expression left, Expression right){
+          super(left, right);
+      }
+  
+      @Override
+      public int interpreter(Map<Character, Integer> var){
+          return left.interpreter(var) + right.interpreter(var);
+      }
+  }
+  
+  //减法运算
+  class SubExpression extends SymbolExpression{
+      public SubExpression(Expression left, Expression right){
+          super(left, right);
+      }
+  
+      @Override
+      public int interpreter(Map<Character, Integer> var){
+          return left.interpreter(var) - right.interpreter(var);
+      }
+  }
+  
+  class ExpressionAnalyse{
+      public static Expression analyse(String expStr){
+          Stack<Expression> expStack = new Stack();
+  
+          Expression left = null;
+          Expression right = null;
+  
+          for(int i = 0; i < expStr.length(); i ++){
+              char[] exps = expStr.toCharArray();
+              switch(exps[i]){
+                  case '+' :
+                      left = expStack.peek();
+                      right = new VarExpression(exps[++i]);
+                      expStack.push(new AddExpression(left, right));
+                      break;
+                  case '-' :
+                      left = expStack.peek();
+                      right = new VarExpression(exps[++i]);
+                      expStack.push(new SubExpression(left, right));
+                      break;
+                  default:
+                      expStack.push(new VarExpression(exps[i]));
+              }
+          }
+  
+          Expression expression = expStack.peek();
+          return expression;
+      }
+  }
+  
+  public class Client{
+      public static void main(String[] args){
+          String expStr = "a+b-c+d";
+          Map<Character, Integer> var = new HashMap();
+          var.put('a', 5);
+          var.put('b', 2);
+          var.put('c', 1);
+          var.put('d', 8);
+  
+          Expression expression = ExpressionAnalyse.analyse(expStr);
+          int result = expression.interpreter(var);
+          System.out.println(result);
+      }
+  }
+  ```
+  
+  - `模式实现`
+    
+  ```java
+  public class Context{}
+  
+  public abstract class AbstractExpression{
+    public abstract interpret(Context context);
+  }
+  
+  //终端表达式
+  public class TerminalExpression extends AbstractExpression{
+    @Override
+    public interpret(Context context){
+      // ...
+    }
+  }
+  
+  
+  //非终端表达式
+  public class NonterminalExpression extends AbstractExpression{
+    @Override
+    public interpret(Context context){
+      // ...
+    }
+  }
+  
+  public class Client{
+    public static void main(String[] args){
+      Context context = new Context();
+      AbstractExpression expression = new TerminalExpression();
+      expression.interpret(context);
+      
+      expression = new NonterminalExpression();
+      expression.interpret(context);
+      
+    }
+  }
+  ```
+  
+  - 要点总结
+
+      - Interpreter模式的`应用场合`是Interpreter模式应用中的难点，只有满足“`业务规则频繁变化`，且类似的`结构不断重复`出现，并且`容易抽象为语法规则`的问题“才适合使用Interpreter模式。
+      - 使用Interpreter模式来表示`文法规则`，从而可以使用面向对像技巧来方便的“扩展”文法。
+      - Interpreter模式比较适合简单的文法表示，对于复杂的文法表示，Interpreter模式会产生比较大的类层次结构，需要求助于语法分析生成器这样的标准工具。
+
+  ## 模式总结
+
+* 一个目标：管理`变化`，提高`复用`！
+* 两个手段：
+  * 分解：寻找不同
+  * 抽象：抽象思维，类型/接口
+* 八大原则：
+  * 依赖倒置原则（DIP）
+  * 开放封闭原则（OCP）
+  * 单一职责原则（SRP）
+  * Liskov替换原则（LSP）
+  * 接口隔离原则（ISP）
+  * 对象组合优于类继承
+  * 封装变化点
+  * 面向接口编程
+* 重构技法
+  * 静态 => 动态
+  * 早绑定 => 晚绑定
+  * 继承 => 组合
+  * 编译时依赖 => 运行时依赖
+  * 紧耦合 => 松耦合
+* 所有模式：继承 >> 组合 >> 多态组合（松耦合基础）
+* 关注变化点和稳定点
+* 什么时候不用模式？
+  * 代码可读性很差时
+  * 需求理解很浅时
+  * 变化没有显现时
+  * 不是系统的关键依赖点
+  * 项目没有复用价值时
+  * 项目将要发布时
+* 经验
+  * 不要为模式而模式
+  * 关注抽象类&接口
+  * 理清变化点&稳定点
+  * 审视依赖关系
+  * 要有Framework&Application的区隔思维
+  * 良好的设计时演化的结果
+* 设计模式成长之路
+  * “手中无剑，心中无剑”：见模式而不知
+  * “手中有剑，心中无剑”：可以识别模式，作为应用开发人员使用模式
+  * “手中有剑，心中有剑“：作为框架开发人员为应用设计某些模式
+  * “手中无剑，心中有剑”：忘掉模式，只有原则
+
   
